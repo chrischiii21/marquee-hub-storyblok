@@ -1,0 +1,151 @@
+{
+  "title": "Marketing Agency Arvada CO | Digital Marketing",
+  "city": "Arvada",
+  "description": "Leading marketing agency in Arvada, CO. Digital marketing, social media management, website design, SEO, and PPC services for Arvada businesses.",
+  "keywords": "marketing agency Arvada CO, digital marketing Arvada, Arvada marketing services",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Premium Marketing Solutions",
+      "title": "Local Advertising and Digital Marketing Pros in Arvada, CO",
+      "subtitle": "Helping Arvada Businesses Get Noticed - On Screens and Online",
+      "buttonText": "Contact our advertising experts",
+      "buttonHref": "/contact",
+      "image": "/images/arvada.avif",
+      "imageAlt": "Arvada Colorado cityscape and local businesses"
+    },
+    {
+      "type": "content",
+      "title": "Your Local Marketing Partner in Arvada",
+      "description": "We're a full-service digital marketing agency dedicated to helping Arvada businesses succeed online. Whether you need a <a class='underline font-bold' href='/website-design'>new website</a>, <a class='underline font-bold' href='/social-media-management'>social media management</a>, or <a class='underline font-bold' href='/screen-advertising'>advertising campaigns</a>, we provide personalized strategies that deliver real results.",
+      "image": "/images/arvada.avif",
+      "imageAlt": "Arvada business district and marketing opportunities",
+      "imagePosition": "right",
+      "buttonText": "Get Started",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "features",
+      "badge": "Why Choose Us",
+      "title": "Digital Marketing Experts Serving Arvada",
+      "columns": 4,
+      "features": [
+        {
+          "icon": "target",
+          "title": "Increased Foot Traffic",
+          "description": "Drive more visitors to your storefronts through <a class='underline font-bold' href='/screen-advertising'>indoor digital signage</a>."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Higher Brand Visibility",
+          "description": "Get seen in high-traffic venues and across <a class='underline font-bold' href='/social-media-advertising'>digital platforms</a>."
+        },
+        {
+          "icon": "share",
+          "title": "Improved Online Presence",
+          "description": "Strengthen your digital footprint with professionally <a class='underline font-bold' href='/social-media-management'>managed social media</a>."
+        },
+        {
+          "icon": "dollar",
+          "title": "More Qualified Leads",
+          "description": "Attract high-intent customers with <a class='underline font-bold' href='/ppc'>targeted PPC campaigns</a>."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "badge": "Our Process",
+      "title": "How We Work With Arvada Businesses",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "message",
+          "title": "Step 1: Discovery Call",
+          "description": "We start with a free consultation to understand your business.",
+          "image": "/images/discovery-call.avif"
+        },
+        {
+          "icon": "palette",
+          "title": "Step 2: Custom Strategy",
+          "description": "We create a tailored marketing plan for your business.",
+          "image": "/images/custom-strategy.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Step 3: Execution & Launch",
+          "description": "Our team handles all the work - from design to launch.",
+          "image": "/images/execution.jpeg"
+        },
+        {
+          "icon": "trending",
+          "title": "Step 4: Ongoing Optimization",
+          "description": "We monitor performance and continuously improve results.",
+          "image": "/images/report-optimization.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Grow Your Arvada Business?",
+      "description": "Whether you're a startup or an established business, we have the <a class='underline font-bold' href='/solutions'>marketing solutions</a> to help you reach more customers.",
+      "buttonText": "Schedule a Free Consultation",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "badge": "FAQs",
+      "title": "Common Questions About Our Services",
+      "faqs": [
+        {
+          "question": "Do you only work with businesses in Arvada?",
+          "answer": "While we specialize in serving Arvada businesses, we work with clients throughout the Denver metro area. See all our <a class='underline font-bold' href='/locations'>service areas</a>."
+        },
+        {
+          "question": "What types of businesses do you work with?",
+          "answer": "We work with businesses of all sizes and industries - from local shops to professional services. Explore our <a class='underline font-bold' href='/solutions'>marketing solutions</a> to find the right fit."
+        },
+        {
+          "question": "How much do your services cost?",
+          "answer": "Every business has different needs. <a class='underline font-bold' href='/contact'>Contact us</a> for a free consultation and personalized quote."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving Arvada and Surrounding Areas",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Denver",
+          "href": "/",
+          "description": "Downtown Denver"
+        },
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to reach Arvada customers?",
+      "description": "Contact us today for a free consultation about Arvada advertising opportunities.",
+      "buttonText": "Get Free Quote",
+      "buttonHref": "/contact"
+    }
+  ]
+}

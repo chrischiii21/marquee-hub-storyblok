@@ -1,0 +1,149 @@
+{
+  "title": "Connected TV (OTT Ads)",
+  "description": "Reach audiences on streaming platforms with targeted TV advertising.",
+  "keywords": "connected TV advertising Denver, CTV ads Denver, OTT advertising Denver, streaming TV ads",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Branding & Awareness",
+      "title": "Connected TV | OTT",
+      "description": "Capture the attention of a streaming audience with dynamic video ads.",
+      "buttonText": "Get Started",
+      "buttonHref": "/contact",
+      "image": "/images/connected-tv.avif",
+      "imageAlt": "Connected TV streaming on smart television"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Connected TV + Over-The-Top Advertising",
+      "description": "Connected TV (CTV) and Over-The-Top video (OTT) advertising allows you to make an impact with stunning video ads. Target TV streaming audiences on popular channels like ESPN, CNN, and Fox. These non-skippable ads are designed to leave a lasting impression. Combine CTV with <a class='underline font-bold' href='/streaming-audio'>streaming audio ads</a> to reach your audience across both video and audio platforms.",
+      "image": "/images/connected-tv-content.avif",
+      "imageAlt": "Streaming TV platforms and devices",
+      "imagePosition": "right"
+    },
+    {
+      "type": "features",
+      "title": "Why Connected TV Advertising Works",
+      "description": "Combine the impact of TV with the precision of digital advertising.",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "tv",
+          "title": "Premium Placement",
+          "description": "Your ads appear on popular streaming platforms like Hulu, Roku, Fire TV, and more."
+        },
+        {
+          "icon": "target",
+          "title": "Precise Targeting",
+          "description": "Target by demographics, interests, location, viewing habits, and more similar to <a class='underline font-bold' href='/geofencing'>geofencing</a> precision but for streaming audiences."
+        },
+        {
+          "icon": "globe",
+          "title": "Non-Skippable Impact",
+          "description": "Unlike YouTube ads, CTV ads can't be skipped just like our <a class='underline font-bold' href='/screen-advertising'>indoor digital billboards</a>."
+        },
+        {
+          "icon": "monitor",
+          "title": "Measurable Results",
+          "description": "Track impressions, completion rates, website visits, and conversions."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "How Connected TV Advertising Works",
+      "description": "From strategy to results, we handle everything.",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "target",
+          "title": "Strategy & Targeting",
+          "description": "We identify your ideal audience and create a targeting strategy.",
+          "image": "/images/strategy.avif"
+        },
+        {
+          "icon": "palette",
+          "title": "Creative Development",
+          "description": "We produce high-quality video ads optimized for streaming platforms.",
+          "image": "/images/creative-development.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Campaign Launch",
+          "description": "Your ads go live across premium streaming networks.",
+          "image": "/images/campaign-launch.avif"
+        },
+        {
+          "icon": "wrench",
+          "title": "Tracking & Optimization",
+          "description": "We monitor performance and continuously optimize.",
+          "image": "/images/tracking.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Reach Streaming Audiences?",
+      "description": "Launch your Connected TV campaign and get your brand in front of engaged viewers.",
+      "buttonText": "Start Your CTV Campaign",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Connected TV Advertising FAQs",
+      "faqs": [
+        {
+          "question": "What is Connected TV (CTV) advertising?",
+          "answer": "CTV advertising delivers video ads to viewers watching streaming content on internet-connected devices."
+        },
+        {
+          "question": "How is CTV different from traditional TV advertising?",
+          "answer": "CTV offers precise targeting, real-time tracking, and measurable results that traditional TV can't provide. It pairs well with <a class='underline font-bold' href='/social-media-advertising'>social media advertising</a> for a full-funnel approach."
+        },
+        {
+          "question": "What platforms will my ads appear on?",
+          "answer": "Your ads can appear on major streaming platforms like Hulu, Peacock, Paramount+, Pluto TV, and more."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "description": "We're proud to serve businesses throughout the Denver metro area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "title": "Social Media Advertising",
+  "description": "Professional social media advertising services to drive targeted traffic and conversions.",
+  "keywords": "social media advertising Denver, Facebook ads Denver, Instagram ads Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Lead Generation",
+      "title": "Social Media Advertising",
+      "description": "Drive engagement and growth with Social Media Advertising.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/advertising.avif",
+      "imageAlt": "Social media advertising campaigns on mobile devices"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Social Media Ads",
+      "description": "Social Media Advertising (SMA) allows you to position your brand on the platforms your audience loves most. With engaging visuals and thoughtful messaging, you can tailor your ads to match your target audience's behavioral patterns. For a complete social strategy, combine paid ads with <a class='underline font-bold' href='/social-media-management'>organic social media management</a>.",
+      "image": "/images/advertising-content.avif",
+      "imageAlt": "Targeted social media ad campaigns",
+      "imagePosition": "right"
+    },
+    {
+      "type": "features",
+      "title": "Why You Need To Incorporate Social Media Ads",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "share",
+          "title": "Demographic Research",
+          "description": "Your dedicated specialist will identify platform algorithms to target your ideal customer."
+        },
+        {
+          "icon": "target",
+          "title": "Expert Implementation",
+          "description": "Your dedicated campaign manager will guide the performance of your campaign."
+        },
+        {
+          "icon": "palette",
+          "title": "Creative",
+          "description": "We'll strategically design your ad to engage your target audience effectively."
+        },
+        {
+          "icon": "monitor",
+          "title": "Reporting",
+          "description": "Detailed, insightful report calls to give you a comprehensive understanding."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Steps On Social Media Ads",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "message",
+          "title": "Step 1: On-Boarding Meeting",
+          "description": "We'll understand your brand, goals, and target audience.",
+          "image": "/images/on-boarding.avif"
+        },
+        {
+          "icon": "palette",
+          "title": "Step 2: Insights & Creative",
+          "description": "Our creative team produces your ad while gathering insights.",
+          "image": "/images/content-development.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Step 3: Execution",
+          "description": "We push out your campaign and continuously optimize it.",
+          "image": "/images/execution.jpeg"
+        },
+        {
+          "icon": "wrench",
+          "title": "Step 4: Reporting",
+          "description": "Thorough report of the campaign's performance.",
+          "image": "/images/reporting.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Grow Your Business with Social Media Ads?",
+      "description": "Let our experts create high-converting social media ad campaigns.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Common Questions About Social Media Advertising",
+      "faqs": [
+        {
+          "question": "How much do social media ads cost?",
+          "answer": "Costs vary due to factors like day of the week, demographics, and time of day."
+        },
+        {
+          "question": "How do you ensure our ads reach the right audience?",
+          "answer": "We utilize targeting tools to pinpoint your ideal audience based on demographics, interests, and behaviors. For location-specific targeting, we also offer <a class='underline font-bold' href='/geofencing'>geofencing display advertising</a>."
+        },
+        {
+          "question": "Can social media ads work with other channels?",
+          "answer": "Definitely! Social ads pair powerfully with <a class='underline font-bold' href='/ppc'>pay-per-click campaigns</a> for lead generation, and <a class='underline font-bold' href='/connected-tv'>connected TV advertising</a> for broader brand awareness."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

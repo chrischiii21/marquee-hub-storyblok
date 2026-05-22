@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "title": "Get a Free Marketing Consultation",
+  "description": "Let us help you grow your business with our proven digital marketing strategies.",
+  "buttonText": "Schedule Now!",
+  "buttonHref": "/contact",
+  "image": "/images/on-boarding.avif",
+  "delay": 3
+}

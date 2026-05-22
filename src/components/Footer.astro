@@ -1,0 +1,513 @@
+---
+import { siteConfig } from "@/config/site"
+import { footerConfig } from "@/config/navigation"
+import { Facebook, Instagram, Linkedin, Twitter, Youtube, ChevronRight } from "lucide-react"
+
+interface Props {
+  variant?: "classic" | "centered" | "minimal"
+}
+
+const { variant = "classic" } = Astro.props
+
+const socialIcons = {
+  facebook: Facebook,
+  instagram: Instagram,
+  linkedin: Linkedin,
+  twitter: Twitter,
+  youtube: Youtube,
+}
+
+const currentYear = new Date().getFullYear()
+const socialPlatforms: Array<keyof typeof siteConfig.social> = ["linkedin", "facebook", "instagram", "youtube"]
+const socialLinks = socialPlatforms.map((platform) => [platform, siteConfig.social[platform] || "#"] as const)
+---
+
+{variant === "classic" && (
+  <footer class="footer-dark">
+    <div class="container mx-auto px-4 md:px-8">
+
+      <!-- Top row: brand + social -->
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="/" class="footer-logo" aria-label={siteConfig.business.name}>
+            <img
+              src={siteConfig.logo.src}
+              alt={siteConfig.logo.alt}
+              width="64"
+              height="64"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+          <p class="footer-tagline">{footerConfig.description}</p>
+        </div>
+
+        {socialLinks.length > 0 && (
+          <div class="footer-social-col">
+            <p class="footer-kicker">Connect With Us</p>
+            <div class="footer-social-row">
+              {socialLinks.map(([platform, url]) => {
+                const Icon = socialIcons[platform as keyof typeof socialIcons]
+                if (!Icon) return null
+                return (
+                  <a href={url} target="_blank" rel="noopener noreferrer" class="footer-social" aria-label={platform}>
+                    <Icon className="w-4 h-4" />
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <!-- Columns -->
+      <div class="footer-cols">
+        {footerConfig.columns.map((col) => (
+          <div class="footer-col">
+            {col.type === 'accordion' ? (
+              <>
+                {col.href ? (
+                  <a href={col.href} class="footer-col__title footer-col__title--link">
+                    {col.title.toUpperCase()}
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+                ) : (
+                  <p class="footer-col__title">{col.title.toUpperCase()}</p>
+                )}
+
+                <div class="footer-accordion" x-data={`{ openSection: '${col.sections[0]?.label ?? ''}' }`}>
+                  {col.sections.map((section) => (
+                    <div class="footer-accordion__item">
+                      <button
+                        type="button"
+                        class="footer-accordion__trigger"
+                        @click={`openSection = openSection === '${section.label}' ? null : '${section.label}'`}
+                        :aria-expanded={`openSection === '${section.label}'`}
+                        aria-label={`Toggle ${section.label}`}
+                      >
+                        <span>{section.label.toUpperCase()}</span>
+                        <span
+                          class="footer-accordion__chevron"
+                          :class={`openSection === '${section.label}' ? 'is-open' : ''`}
+                        >
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </span>
+                      </button>
+                      <ul
+                        class="footer-accordion__list"
+                        x-show={`openSection === '${section.label}'`}
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-1"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                      >
+                        {section.items.map((item) => (
+                          <li><a href={item.href} class="footer-col__link">{item.label}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <>
+                <p class="footer-col__title">{col.title.toUpperCase()}</p>
+                <ul class="footer-col__list">
+                  {col.links.map((link) => (
+                    <li><a href={link.href} class="footer-col__link">{link.label}</a></li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        ))}
+
+        <!-- Contact column -->
+        <div class="footer-col">
+          <p class="footer-col__title">Contact Us</p>
+          <ul class="footer-col__list">
+            <li><span class="footer-col__link footer-col__link--static">{siteConfig.location.city}</span></li>
+            <li><a href={`tel:${siteConfig.contact.phone}`} class="footer-col__link">{siteConfig.contact.phoneFormatted}</a></li>
+            <li><a href={`mailto:${siteConfig.contact.email}`} class="footer-col__link">{siteConfig.contact.email}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <!-- Bottom legal strip -->
+      <div class="footer-legal">
+        <div class="footer-legal__links">
+          {footerConfig.bottomLinks.map((link, i) => (
+            <>
+              {i > 0 && <span class="footer-legal__sep">|</span>}
+              <a href={link.href} class="footer-legal__link">{link.label}</a>
+            </>
+          ))}
+        </div>
+        <p class="footer-legal__copy">© {currentYear} {siteConfig.business.name}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+)}
+
+{variant === "centered" && (
+  <footer class="footer-dark footer-dark--centered">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="footer-centered__top">
+        <a href="/" class="footer-logo">
+          <img src={siteConfig.logo.src} alt={siteConfig.logo.alt} width="56" height="56" loading="lazy" decoding="async" />
+        </a>
+        <p class="footer-tagline footer-tagline--center">
+          {siteConfig.business.description} in {siteConfig.location.city}, {siteConfig.location.state}.
+        </p>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <nav class="footer-centered__nav">
+        <a href="/about" class="footer-col__link">About</a>
+        <a href="/solutions" class="footer-col__link">Solutions</a>
+        <a href="/screen-advertising" class="footer-col__link">Screen Advertising</a>
+        <a href="/venue-partner" class="footer-col__link">Venue Partner</a>
+        <a href="/locations" class="footer-col__link">Locations</a>
+        <a href="/contact" class="footer-col__link">Contact</a>
+      </nav>
+
+      <div class="footer-centered__meta">
+        <span>{siteConfig.contact.phoneFormatted}</span>
+        <span class="footer-dot">·</span>
+        <span>{siteConfig.contact.email}</span>
+        <span class="footer-dot">·</span>
+        <span>{siteConfig.location.city}, {siteConfig.location.state}</span>
+      </div>
+
+      {socialLinks.length > 0 && (
+        <div class="footer-centered__social">
+          {socialLinks.map(([platform, url]) => {
+            const Icon = socialIcons[platform as keyof typeof socialIcons]
+            if (!Icon) return null
+            return (
+              <a href={url} target="_blank" rel="noopener noreferrer" class="footer-social" aria-label={platform}>
+                <Icon className="w-4 h-4" />
+              </a>
+            )
+          })}
+        </div>
+      )}
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-legal">
+        <div class="footer-legal__links">
+          <a href="/terms" class="footer-legal__link">Terms</a>
+          <span class="footer-legal__sep">|</span>
+          <a href="/privacy" class="footer-legal__link">Privacy</a>
+        </div>
+        <p class="footer-legal__copy">© {currentYear} {siteConfig.business.name}</p>
+      </div>
+    </div>
+  </footer>
+)}
+
+{variant === "minimal" && (
+  <footer class="footer-dark footer-dark--minimal">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="footer-minimal__row">
+        <a href="/" class="footer-logo">
+          <img src={siteConfig.logo.src} alt={siteConfig.logo.alt} width="40" height="40" loading="lazy" decoding="async" />
+        </a>
+        <nav class="footer-minimal__nav">
+          <a href="/about" class="footer-col__link">About</a>
+          <a href="/solutions" class="footer-col__link">Solutions</a>
+          <a href="/contact" class="footer-col__link">Contact</a>
+          <span class="footer-legal__sep">|</span>
+          <a href="/terms" class="footer-col__link">Terms</a>
+          <a href="/privacy" class="footer-col__link">Privacy</a>
+        </nav>
+        <p class="footer-legal__copy">© {currentYear} {siteConfig.business.name}</p>
+      </div>
+    </div>
+  </footer>
+)}
+
+<style>
+  .footer-dark {
+    background: #0E0E0E;
+    color: #fff;
+    padding: 3.5rem 0 2rem;
+  }
+  @media (min-width: 768px) { .footer-dark { padding: 5rem 0 2.5rem; } }
+
+  /* ===== Top row ===== */
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  @media (min-width: 900px) {
+    .footer-top {
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: start;
+    }
+  }
+
+  .footer-brand-col { max-width: 34rem; }
+  .footer-logo {
+    display: inline-flex;
+    margin-bottom: 1.25rem;
+    line-height: 0;
+  }
+  .footer-logo img {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  .footer-tagline {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+  }
+  .footer-tagline--center { text-align: center; max-width: 36rem; margin: 0 auto; }
+
+  .footer-social-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  @media (min-width: 900px) { .footer-social-col { align-items: flex-end; } }
+
+  .footer-kicker {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+  }
+  .footer-social-row {
+    display: flex;
+    gap: 0.65rem;
+  }
+  .footer-social {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #1F1F1F;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.2s ease;
+  }
+  .footer-social:hover {
+    background: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  /* ===== Divider ===== */
+  .footer-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0;
+  }
+
+  /* ===== Columns ===== */
+  .footer-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 1.5rem;
+    padding: 3rem 0;
+  }
+  @media (min-width: 768px) { .footer-cols { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .footer-cols { grid-template-columns: repeat(4, 1fr); gap: 3rem 2rem; } }
+
+  .footer-col__title {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+  }
+  .footer-col__title--link {
+    transition: color 0.2s ease;
+  }
+  .footer-col__title--link:hover { color: var(--terracotta); }
+
+  .footer-col__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-col__link {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-col__link:hover { color: var(--terracotta); }
+  .footer-col__link--static { cursor: default; }
+  .footer-col__link--static:hover { color: rgba(255, 255, 255, 0.72); }
+
+  /* ===== Accordion ===== */
+  .footer-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .footer-accordion__item {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    text-align: left;
+    transition: color 0.2s ease;
+  }
+  .footer-accordion__trigger:hover { color: var(--terracotta); }
+  .footer-accordion__chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.55);
+    transition: transform 0.25s ease;
+  }
+  .footer-accordion__chevron.is-open { transform: rotate(90deg); }
+  .footer-accordion__list {
+    list-style: none;
+    padding: 0.5rem 0 0.75rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  /* ===== Bottom legal strip ===== */
+  .footer-legal {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .footer-legal {
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+  }
+  .footer-legal__links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer-legal__link {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .footer-legal__link:hover { color: var(--terracotta); }
+  .footer-legal__sep {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.85rem;
+  }
+  .footer-legal__copy {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+  }
+
+  /* ===== Centered variant ===== */
+  .footer-centered__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0 2.5rem;
+  }
+  .footer-centered__top .footer-logo { margin-bottom: 0; }
+  .footer-centered__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
+    padding: 2rem 0 1rem;
+  }
+  .footer-centered__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 0 0 1.75rem;
+  }
+  .footer-dot { opacity: 0.5; }
+  .footer-centered__social {
+    display: flex;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0 0 2rem;
+  }
+
+  /* ===== Minimal variant ===== */
+  .footer-dark--minimal { padding: 2.25rem 0; }
+  .footer-minimal__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  @media (min-width: 900px) {
+    .footer-minimal__row { flex-direction: row; justify-content: space-between; }
+  }
+  .footer-minimal__row .footer-logo img { height: 36px; }
+  .footer-minimal__row .footer-logo { margin-bottom: 0; }
+  .footer-minimal__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+  }
+</style>

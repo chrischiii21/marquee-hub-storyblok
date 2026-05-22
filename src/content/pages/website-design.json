@@ -1,0 +1,151 @@
+{
+  "title": "Website Design",
+  "description": "Custom website design & development to achieve your unique goals and maximize results.",
+  "keywords": "website design Denver, web design Denver CO, custom website design, web development Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Foundational",
+      "title": "Best Website Design Services to Elevate Your Brand Online",
+      "description": "Custom website design & development to achieve your unique goals and maximize results.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/website-design.avif",
+      "imageAlt": "Modern custom website design on laptop"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Custom Websites",
+      "description": "Every business is unique, and your website should be too. We don't use cookie-cutter templates, we build custom websites tailored to your brand, your goals, and your customers. A great website is the foundation for all your digital marketing, from <a class='underline font-bold' href='/ppc'>PPC campaigns</a> to <a class='underline font-bold' href='/google-business'>Google Business Profile</a> optimization.",
+      "image": "/images/website-design-content.avif",
+      "imageAlt": "Custom website design process and development",
+      "imagePosition": "left"
+    },
+    {
+      "type": "features",
+      "title": "Website Solutions: Guiding You from Start to Finish",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "globe",
+          "title": "UI/UX Design",
+          "description": "Intuitive, easy to navigate, and visually engaging experience."
+        },
+        {
+          "icon": "target",
+          "title": "Search Engine Optimization (SEO)",
+          "description": "SEO best practices ensure your website ranks well in search results."
+        },
+        {
+          "icon": "monitor",
+          "title": "Maintenance and Support",
+          "description": "Ongoing maintenance ensures your website remains secure and up-to-date."
+        },
+        {
+          "icon": "share",
+          "title": "Analytics and Tracking",
+          "description": "Track website traffic and user behavior with Google Analytics."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Website Design Process",
+      "description": "Our proven process ensures your website is built right, on time, and ready to grow your business.",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "star",
+          "title": "Step 1: Discovery & Strategy",
+          "description": "We understand your business, goals, and target audience.",
+          "image": "/images/website-discovery.avif"
+        },
+        {
+          "icon": "palette",
+          "title": "Step 2: Design & Development",
+          "description": "We design and build your custom website.",
+          "image": "/images/website-development.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Step 3: Testing & Launch",
+          "description": "We thoroughly test everything before launch.",
+          "image": "/images/website-testing.jpeg"
+        },
+        {
+          "icon": "wrench",
+          "title": "Step 4: Support & Growth",
+          "description": "Ongoing support, updates, and optimization.",
+          "image": "/images/website-support.jpeg"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Build Your Dream Website?",
+      "description": "Get a custom website that drives results. Contact us today for a free consultation.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Website Common Questions",
+      "faqs": [
+        {
+          "question": "How long does it take to build a website?",
+          "answer": "Most websites take 4-8 weeks from start to launch."
+        },
+        {
+          "question": "Do I need to provide content for my website?",
+          "answer": "We can work with whatever you have! If not, we can help write it. Our <a class='underline font-bold' href='/design-services'>design services</a> team can also create custom graphics and branding assets for your site."
+        },
+        {
+          "question": "Do you provide hosting and maintenance?",
+          "answer": "Yes, we offer hosting, security, backups, and ongoing maintenance packages."
+        },
+        {
+          "question": "What happens after my website launches?",
+          "answer": "We can help you attract visitors through <a class='underline font-bold' href='/social-media-management'>social media marketing</a>, SEO, and <a class='underline font-bold' href='/ppc'>PPC campaigns</a>."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

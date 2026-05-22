@@ -1,0 +1,380 @@
+---
+import { getLocationText } from "@/config/site"
+import AnimateOnScroll from "@/components/AnimateOnScroll.astro"
+import {
+  MapPin, Users, DollarSign, Sparkles, Award, Target,
+  Zap, Globe, TrendingUp, Heart, Shield, Clock,
+  MessageSquare, Palette, Rocket, Settings, Wrench, ArrowUpRight,
+} from "lucide-react"
+
+const iconMap: Record<string, any> = {
+  mappin: MapPin, pin: MapPin, users: Users, people: Users,
+  dollar: DollarSign, money: DollarSign, sparkles: Sparkles, sparkle: Sparkles,
+  award: Award, badge: Award, target: Target, zap: Zap, globe: Globe,
+  trending: TrendingUp, heart: Heart, shield: Shield, clock: Clock,
+  message: MessageSquare, chat: MessageSquare, palette: Palette, design: Palette,
+  rocket: Rocket, launch: Rocket, settings: Settings, tools: Wrench, wrench: Wrench,
+}
+
+interface ValueCard {
+  icon?: string
+  title: string
+  description: string
+  image?: string
+}
+
+interface Props {
+  badge?: string
+  title?: string
+  description?: string
+  cards: ValueCard[]
+  variant?: "cards" | "minimal" | "overlay" | "marquee"
+}
+
+const { badge, title, description, cards, variant = "cards" } = Astro.props
+
+const processedTitle = title ? getLocationText(title) : undefined
+const processedDescription = description ? getLocationText(description) : undefined
+const processedBadge = badge ? getLocationText(badge) : undefined
+
+const getIcon = (iconName?: string) => iconMap[iconName?.toLowerCase() || ""] || Award
+
+// Determine if we render a bento-style grid (cards variant with images)
+const hasImages = cards.some(c => c.image)
+---
+
+<section class={`vc-sec ${variant === "marquee" ? "overflow-hidden" : ""}`}>
+  <div class="container mx-auto px-4 md:px-8">
+
+    {(processedTitle || processedBadge) && (
+      <AnimateOnScroll animation="fade-up">
+        <div class="vc-head">
+          {processedBadge && <span class="chip-label mb-5">{processedBadge}</span>}
+          {processedTitle && <h2 class="vc-title">{processedTitle}</h2>}
+          {processedDescription && <p class="vc-desc">{processedDescription}</p>}
+        </div>
+      </AnimateOnScroll>
+    )}
+
+    {variant === "cards" && (
+      hasImages ? (
+        <div class="vc-bento">
+          {cards.map((card, i) => {
+            const Icon = getIcon(card.icon)
+            return (
+              <AnimateOnScroll animation="fade-up" delay={i * 90} class={`vc-bento__cell vc-bento__cell--${(i % 4) + 1}`}>
+                {card.image ? (
+                  <article class="image-card vc-image-card">
+                    <img src={card.image} alt={card.title} loading="lazy" decoding="async" />
+                    <div class="image-card__body vc-image-card__body">
+                      <h3 class="vc-image-title">{getLocationText(card.title)}</h3>
+                      <p class="vc-image-desc">{getLocationText(card.description)}</p>
+                    </div>
+                  </article>
+                ) : (
+                  <article class="dark-card vc-dark-card">
+                    <div>
+                      <div class="vc-dark-icon"><Icon className="w-5 h-5" /></div>
+                      <h3 class="vc-dark-title">{getLocationText(card.title)}</h3>
+                      <p class="vc-dark-desc" set:html={getLocationText(card.description)} />
+                    </div>
+                    <a href="#" class="pill-btn pill-btn--light vc-dark-cta">
+                      Explore
+                      <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+                    </a>
+                  </article>
+                )}
+              </AnimateOnScroll>
+            )
+          })}
+        </div>
+      ) : (
+        <div class="vc-grid vc-grid--auto">
+          {cards.map((card, i) => {
+            const Icon = getIcon(card.icon)
+            return (
+              <AnimateOnScroll animation="fade-up" delay={i * 90}>
+                <article class="vc-card">
+                  <div class="vc-card__icon"><Icon className="w-5 h-5" /></div>
+                  <h3 class="vc-card__title">{getLocationText(card.title)}</h3>
+                  <p class="vc-card__desc" set:html={getLocationText(card.description)} />
+                </article>
+              </AnimateOnScroll>
+            )
+          })}
+        </div>
+      )
+    )}
+
+    {variant === "minimal" && (
+      <div class="vc-grid vc-grid--auto">
+        {cards.map((card, i) => {
+          const Icon = getIcon(card.icon)
+          return (
+            <AnimateOnScroll animation="fade-up" delay={i * 90}>
+              <article class="vc-minimal">
+                <div class="vc-minimal__icon"><Icon className="w-6 h-6" /></div>
+                <h3 class="vc-minimal__title">{getLocationText(card.title)}</h3>
+                <p class="vc-minimal__desc" set:html={getLocationText(card.description)} />
+              </article>
+            </AnimateOnScroll>
+          )
+        })}
+      </div>
+    )}
+
+    {variant === "overlay" && (
+      <div class="vc-grid vc-grid--auto">
+        {cards.map((card, i) => {
+          const Icon = getIcon(card.icon)
+          return (
+            <AnimateOnScroll animation="fade-up" delay={i * 90}>
+              <article class="image-card vc-overlay">
+                {card.image ? (
+                  <img src={card.image} alt={card.title} loading="lazy" decoding="async" />
+                ) : (
+                  <div class="vc-overlay__fallback" />
+                )}
+                <div class="image-card__body">
+                  <div class="vc-overlay__icon"><Icon className="w-5 h-5" /></div>
+                  <h3 class="vc-image-title">{getLocationText(card.title)}</h3>
+                  <p class="vc-image-desc">{getLocationText(card.description)}</p>
+                </div>
+              </article>
+            </AnimateOnScroll>
+          )
+        })}
+      </div>
+    )}
+
+    {variant === "marquee" && (
+      <div class="vc-grid vc-grid--auto">
+        {cards.map((card, i) => {
+          const Icon = getIcon(card.icon)
+          return (
+            <AnimateOnScroll animation="fade-up" delay={i * 90}>
+              <article class="vc-card">
+                <div class="vc-card__icon"><Icon className="w-5 h-5" /></div>
+                <h3 class="vc-card__title">{getLocationText(card.title)}</h3>
+                <p class="vc-card__desc" set:html={getLocationText(card.description)} />
+              </article>
+            </AnimateOnScroll>
+          )
+        })}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .vc-sec {
+    padding: 2rem 0 2.5rem;
+    background: var(--bg-cream);
+  }
+  @media (min-width: 768px) { .vc-sec { padding: 2.75rem 0 3.25rem; } }
+
+  .vc-head {
+    margin-bottom: 2.5rem;
+    max-width: 48rem;
+  }
+  .vc-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0.75rem 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .vc-desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 36rem;
+    margin: 0;
+  }
+
+  /* ==== Bento grid (cards variant with images) ==== */
+  .vc-bento {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .vc-bento { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  }
+  .vc-bento__cell { height: 100%; }
+
+  .vc-image-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    height: 100%;
+    min-height: 320px;
+  }
+  .vc-image-card img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s cubic-bezier(.22,.8,.36,1);
+  }
+  .vc-image-card:hover img { transform: scale(1.04); }
+  .vc-image-card__body { padding: 1.5rem; }
+  .vc-image-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: #fff !important;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .vc-image-desc {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .vc-dark-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 100%;
+    min-height: 320px;
+  }
+  .vc-dark-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    color: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .vc-dark-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    color: #fff !important;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .vc-dark-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+  }
+  .vc-dark-cta { align-self: flex-start; }
+
+  /* ==== Standard grid ==== */
+  .vc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) { .vc-grid--auto { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .vc-grid--auto { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; } }
+
+  .vc-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 1.75rem;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  .vc-card:hover { transform: translateY(-3px); border-color: var(--terracotta); box-shadow: 0 20px 40px -20px rgba(26,26,26,0.18); }
+  .vc-card__icon {
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    background: var(--bg-cream);
+    color: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .vc-card__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .vc-card__desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ==== Minimal ==== */
+  .vc-minimal {
+    text-align: center;
+    padding: 1rem;
+  }
+  .vc-minimal__icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: var(--ink);
+    color: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: all 0.35s ease;
+  }
+  .vc-minimal:hover .vc-minimal__icon { transform: rotate(-4deg) scale(1.05); background: var(--terracotta); color: #fff; }
+  .vc-minimal__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .vc-minimal__desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+
+  /* ==== Overlay ==== */
+  .vc-overlay {
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    min-height: 300px;
+  }
+  .vc-overlay img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+    background: var(--ink);
+    transition: transform 0.7s cubic-bezier(.22,.8,.36,1);
+  }
+  .vc-overlay:hover img { transform: scale(1.03); }
+  .vc-overlay__fallback {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, var(--ink) 0%, #3a2e24 100%);
+  }
+  .vc-overlay__icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 0.85rem;
+  }
+</style>

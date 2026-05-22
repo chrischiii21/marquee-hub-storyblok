@@ -1,0 +1,454 @@
+---
+import AnimateOnScroll from "@/components/AnimateOnScroll.astro"
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react"
+
+interface ContactInfo {
+  phone?: string
+  phoneFormatted?: string
+  email?: string
+  location?: string
+}
+
+interface Props {
+  title?: string
+  description?: string
+  secondaryDescription?: string
+  contactInfo?: ContactInfo
+  submitText?: string
+  variant?: "default" | "split" | "card"
+}
+
+const {
+  title = "Contact Us",
+  description = "Ready to take your marketing to the next level? We'd love to hear from you.",
+  secondaryDescription = "Fill out the form and we'll get back to you within 24 hours.",
+  contactInfo = {
+    phone: "+17206056959",
+    phoneFormatted: "(720) 605-6959",
+    email: "info@Denvermarketing.com",
+    location: "Denver, Colorado",
+  },
+  submitText = "Submit Form",
+  variant = "default",
+} = Astro.props
+---
+
+<section class="contact-sec">
+  <div class="container mx-auto px-4 md:px-8">
+    {variant === "split" && (
+      <div class="contact-split">
+        <div class="dark-card contact-panel">
+          <AnimateOnScroll animation="fade-right">
+            <span class="chip-label chip-label--light mb-6">Let's Connect</span>
+            <h2 class="contact-title">{title}</h2>
+            <p class="contact-desc">{description}</p>
+            <p class="contact-desc contact-desc--sub">{secondaryDescription}</p>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fade-up" delay={200}>
+            <div class="contact-details">
+              {contactInfo.phoneFormatted && (
+                <a href={`tel:${contactInfo.phone}`} class="contact-row">
+                  <span class="contact-row__icon"><Phone className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label">Phone</span>
+                    <span class="contact-row__value">{contactInfo.phoneFormatted}</span>
+                  </span>
+                </a>
+              )}
+              {contactInfo.email && (
+                <a href={`mailto:${contactInfo.email}`} class="contact-row">
+                  <span class="contact-row__icon"><Mail className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label">Email</span>
+                    <span class="contact-row__value">{contactInfo.email}</span>
+                  </span>
+                </a>
+              )}
+              {contactInfo.location && (
+                <div class="contact-row">
+                  <span class="contact-row__icon"><MapPin className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label">Location</span>
+                    <span class="contact-row__value">{contactInfo.location}</span>
+                  </span>
+                </div>
+              )}
+            </div>
+          </AnimateOnScroll>
+        </div>
+
+        <div class="contact-form-wrap">
+          <AnimateOnScroll animation="fade-left">
+            <form class="contact-form contact-form--light" x-data="{ submitting: false }" @submit.prevent="submitting = true; setTimeout(() => submitting = false, 1000)">
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required />
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your project..." rows="4"></textarea>
+              </div>
+              <button type="submit" :disabled="submitting" class="pill-btn pill-btn--terracotta contact-submit">
+                <span x-text={`submitting ? 'Sending...' : '${submitText}'`}></span>
+                <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+              </button>
+            </form>
+          </AnimateOnScroll>
+        </div>
+      </div>
+    )}
+
+    {variant === "card" && (
+      <>
+        <AnimateOnScroll animation="fade-up">
+          <div class="contact-head">
+            <h2 class="contact-title contact-title--dark">{title}</h2>
+            <p class="contact-desc contact-desc--muted">{description}</p>
+          </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll animation="fade-up" delay={100}>
+          <div class="contact-card">
+            <div class="contact-card-info">
+              {contactInfo.phoneFormatted && (
+                <a href={`tel:${contactInfo.phone}`} class="contact-row contact-row--light">
+                  <span class="contact-row__icon"><Phone className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label contact-row__label--muted">Phone</span>
+                    <span class="contact-row__value contact-row__value--dark">{contactInfo.phoneFormatted}</span>
+                  </span>
+                </a>
+              )}
+              {contactInfo.email && (
+                <a href={`mailto:${contactInfo.email}`} class="contact-row contact-row--light">
+                  <span class="contact-row__icon"><Mail className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label contact-row__label--muted">Email</span>
+                    <span class="contact-row__value contact-row__value--dark">{contactInfo.email}</span>
+                  </span>
+                </a>
+              )}
+              {contactInfo.location && (
+                <div class="contact-row contact-row--light">
+                  <span class="contact-row__icon"><MapPin className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label contact-row__label--muted">Location</span>
+                    <span class="contact-row__value contact-row__value--dark">{contactInfo.location}</span>
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <form class="contact-form contact-form--light" x-data="{ submitting: false }" @submit.prevent="submitting = true; setTimeout(() => submitting = false, 1000)">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div class="form-field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required />
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your project..." rows="4"></textarea>
+              </div>
+              <button type="submit" :disabled="submitting" class="pill-btn pill-btn--terracotta contact-submit">
+                <span x-text={`submitting ? 'Sending...' : '${submitText}'`}></span>
+                <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+              </button>
+            </form>
+          </div>
+        </AnimateOnScroll>
+      </>
+    )}
+
+    {variant === "default" && (
+      <div class="contact-default">
+        <AnimateOnScroll animation="fade-right">
+          <div class="contact-info-side">
+            <span class="chip-label mb-5">Get in Touch</span>
+            <h2 class="contact-title contact-title--dark">{title}</h2>
+            <p class="contact-desc contact-desc--muted">{description}</p>
+            <p class="contact-desc contact-desc--muted contact-desc--sub">{secondaryDescription}</p>
+
+            <div class="contact-details contact-details--light">
+              {contactInfo.phoneFormatted && (
+                <a href={`tel:${contactInfo.phone}`} class="contact-row contact-row--light">
+                  <span class="contact-row__icon"><Phone className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label contact-row__label--muted">Phone</span>
+                    <span class="contact-row__value contact-row__value--dark">{contactInfo.phoneFormatted}</span>
+                  </span>
+                </a>
+              )}
+              {contactInfo.email && (
+                <a href={`mailto:${contactInfo.email}`} class="contact-row contact-row--light">
+                  <span class="contact-row__icon"><Mail className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label contact-row__label--muted">Email</span>
+                    <span class="contact-row__value contact-row__value--dark">{contactInfo.email}</span>
+                  </span>
+                </a>
+              )}
+              {contactInfo.location && (
+                <div class="contact-row contact-row--light">
+                  <span class="contact-row__icon"><MapPin className="w-5 h-5" /></span>
+                  <span>
+                    <span class="contact-row__label contact-row__label--muted">Location</span>
+                    <span class="contact-row__value contact-row__value--dark">{contactInfo.location}</span>
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll animation="fade-left">
+          <div class="contact-form-card">
+            <form class="contact-form contact-form--light" x-data="{ submitting: false }" @submit.prevent="submitting = true; setTimeout(() => submitting = false, 1000)">
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="Email address" required />
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="### ### ####" required />
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Message" rows="4"></textarea>
+              </div>
+              <button type="submit" :disabled="submitting" class="pill-btn pill-btn--terracotta contact-submit">
+                <span x-text={`submitting ? 'Sending...' : '${submitText}'`}></span>
+                <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+              </button>
+            </form>
+          </div>
+        </AnimateOnScroll>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .contact-sec {
+    padding: 2rem 0 2.5rem;
+    background: var(--bg-cream);
+  }
+  @media (min-width: 768px) { .contact-sec { padding: 2.75rem 0 3.25rem; } }
+
+  .contact-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: #fff !important;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .contact-title--dark { color: var(--ink) !important; }
+  .contact-desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 0.75rem;
+  }
+  .contact-desc--muted { color: var(--muted); }
+  .contact-desc--sub { font-size: 0.9rem; opacity: 0.85; }
+
+  /* ==== Split ==== */
+  .contact-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--hairline);
+  }
+  @media (min-width: 900px) { .contact-split { grid-template-columns: 1fr 1fr; } }
+  .contact-panel {
+    padding: 2.5rem 2rem;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) { .contact-panel { padding: 3.5rem 3rem; } }
+  .contact-form-wrap { padding: 2.5rem 2rem; }
+  @media (min-width: 768px) { .contact-form-wrap { padding: 3.5rem 3rem; } }
+
+  /* ==== Card variant ==== */
+  .contact-head {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 3rem;
+  }
+  .contact-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .contact-card { padding: 3rem; } }
+  .contact-card-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  @media (min-width: 768px) { .contact-card-info { grid-template-columns: repeat(3, 1fr); } }
+
+  /* ==== Default variant ==== */
+  .contact-default {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .contact-default { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  }
+  .contact-info-side { padding-top: 0.5rem; }
+  .contact-form-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  @media (min-width: 768px) { .contact-form-card { padding: 2.5rem; } }
+
+  /* ==== Details ==== */
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .contact-details--light {
+    margin-top: 2rem;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+  .contact-row:hover { background: rgba(232,80,10,0.2); }
+  .contact-row--light {
+    background: var(--bg-cream);
+    color: var(--ink);
+  }
+  .contact-row--light:hover { background: rgba(232,80,10,0.08); }
+  .contact-row__icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--terracotta);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-row__label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .contact-row__label--muted { color: var(--muted); }
+  .contact-row__value {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: #fff;
+  }
+  .contact-row__value--dark { color: var(--ink); }
+
+  /* ==== Form ==== */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .form-field label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .contact-form:not(.contact-form--light) .form-field label { color: rgba(255,255,255,0.8); }
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: #fff;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(255,255,255,0.4); }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--terracotta);
+    background: rgba(255,255,255,0.1);
+  }
+  .contact-form--light .form-field input,
+  .contact-form--light .form-field textarea {
+    background: var(--bg-cream);
+    border: 1px solid var(--hairline);
+    color: var(--ink);
+  }
+  .contact-form--light .form-field input::placeholder,
+  .contact-form--light .form-field textarea::placeholder { color: var(--muted); }
+  .contact-form--light .form-field input:focus,
+  .contact-form--light .form-field textarea:focus {
+    border-color: var(--terracotta);
+    background: #fff;
+  }
+  .form-field textarea { resize: none; }
+  .contact-submit { align-self: flex-start; margin-top: 0.5rem; }
+</style>

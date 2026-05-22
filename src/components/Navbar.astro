@@ -1,0 +1,705 @@
+---
+import { navItems, ctaButton } from "@/config/navigation"
+import { siteConfig } from "@/config/site"
+import { Menu, ChevronDown, Play, ArrowUpRight } from "lucide-react"
+
+// Calculate featured indices on server (random per build)
+const featuredIndices: Record<number, number> = {}
+navItems.forEach((item, i) => {
+  if (item.type === 'megamenu' && item.featured && item.featured.length > 0) {
+    featuredIndices[i] = Math.floor(Math.random() * item.featured.length)
+  }
+})
+
+const marqueeItems = [
+  "Free Marketing Consultation",
+  "Trusted by 500+ Local Businesses",
+  "Now Booking Q3 Campaigns",
+  "New Indoor Billboard Locations Added",
+]
+---
+
+<!-- Google Fonts + Global Design Tokens -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@300;400;500;600;700&display=swap" />
+
+<!-- Critical design tokens inline so colors render immediately on first paint -->
+<style is:inline>
+  :root {
+    --bg-cream: #F5F0E8;
+    --bg-cream-deep: #EDE5D6;
+    --ink: #1A1A1A;
+    --ink-soft: #2A2622;
+    --terracotta: #E8500A;
+    --terracotta-deep: #C9410A;
+    --muted: #7A726A;
+    --hairline: #E1D7C5;
+    --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --brand-primary: #E8500A;
+    --brand-secondary: #1A1A1A;
+    --brand-tertiary: #D9CFC2;
+    --brand-quaternary: #EDE5D6;
+    --background: #F5F0E8;
+    --foreground: #1A1A1A;
+    --muted-foreground: #7A726A;
+    --border: #E1D7C5;
+    --primary: #E8500A;
+    --primary-foreground: #FFFFFF;
+  }
+  html, body {
+    background-color: #F5F0E8;
+    color: #1A1A1A;
+  }
+</style>
+
+<style is:global>
+  :root {
+    --bg-cream: #F5F0E8;
+    --bg-cream-deep: #EDE5D6;
+    --ink: #1A1A1A;
+    --ink-soft: #2A2622;
+    --terracotta: #E8500A;
+    --terracotta-deep: #C9410A;
+    --muted: #7A726A;
+    --hairline: #E1D7C5;
+    --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Override site brand tokens with terracotta palette */
+  :root,
+  html {
+    --brand-primary: #E8500A !important;
+    --brand-secondary: #1A1A1A !important;
+    --brand-tertiary: #D9CFC2 !important;
+    --brand-quaternary: #EDE5D6 !important;
+    --background: #F5F0E8 !important;
+    --foreground: #1A1A1A !important;
+    --muted-foreground: #7A726A !important;
+    --border: #E1D7C5 !important;
+    --primary: #E8500A !important;
+    --primary-foreground: #FFFFFF !important;
+  }
+
+  html,
+  body {
+    background-color: var(--bg-cream) !important;
+    color: var(--ink);
+    font-family: var(--font-body) !important;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Headings get the display sans — kept at medium weight for confident, modern tone */
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display) !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  h1 { font-weight: 600 !important; }
+
+  .font-body { font-family: var(--font-body) !important; }
+
+  /* Editorial Chip / Badge */
+  .chip-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    line-height: 1;
+  }
+  .chip-label--light {
+    background: rgba(255,255,255,0.92);
+    color: var(--ink);
+    backdrop-filter: blur(6px);
+  }
+  .chip-label::before {
+    content: "";
+    width: 6px; height: 6px; border-radius: 999px;
+    background: var(--terracotta);
+    display: inline-block;
+  }
+
+  /* Pill CTA — dark pill with terracotta arrow puck */
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.4rem 0.45rem 0.4rem 1.25rem;
+    background: var(--ink);
+    color: #fff !important;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .pill-btn:hover { background: #000; transform: translateY(-1px); }
+  .pill-btn .pill-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--terracotta);
+    color: #fff;
+    transition: transform 0.3s ease, background 0.25s ease;
+  }
+  .pill-btn:hover .pill-arrow { transform: rotate(-45deg); background: var(--terracotta-deep); }
+  .pill-btn--light {
+    background: #fff;
+    color: var(--ink) !important;
+  }
+  .pill-btn--light:hover { background: #f5f0e8; }
+  .pill-btn--terracotta {
+    background: var(--terracotta);
+    color: #fff !important;
+  }
+  .pill-btn--terracotta:hover { background: var(--terracotta-deep); }
+  .pill-btn--terracotta .pill-arrow { background: var(--ink); }
+
+  /* Image card with dark overlay and bottom-aligned text */
+  .image-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    isolation: isolate;
+  }
+  .image-card::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.55) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .image-card__body {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 1.5rem;
+    z-index: 2;
+    color: #fff;
+  }
+
+  /* Dark card — matches reference "Style shaped by culture" block */
+  .dark-card {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 16px;
+  }
+
+  /* Shared card radius */
+  .card-16 { border-radius: 16px !important; }
+
+  /* Marquee */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: inline-flex;
+    gap: 3rem;
+    padding-right: 3rem;
+    animation: marquee-scroll 32s linear infinite;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
+  /* Remove legacy heading bolds so serif doesn't look chunky */
+  h2.font-bold, h3.font-bold, h4.font-bold,
+  .font-bold:is(h1,h2,h3,h4) {
+    font-weight: 500 !important;
+  }
+
+  /* Editorial selection color */
+  ::selection { background: var(--terracotta); color: #fff; }
+</style>
+
+<!-- Marquee Ticker Bar -->
+<div class="marquee-bar">
+  <div class="marquee-viewport" aria-hidden="false" aria-label="Announcements">
+    <div class="marquee-track">
+      {[...Array(2)].flatMap((_, pass) =>
+        marqueeItems.map((item, i) => (
+          <span class="marquee-item" data-pass={pass} data-i={i}>
+            {item}
+            <span class="marquee-dot" aria-hidden="true">✦</span>
+          </span>
+        ))
+      )}
+    </div>
+  </div>
+</div>
+
+<header class="nav-header">
+  <div class="container mx-auto px-4 md:px-8">
+    <div class="flex h-20 items-center justify-between gap-6">
+      <!-- Logo — serif wordmark -->
+      <a href="/" class="nav-brand">
+        <span class="nav-brand__word">{siteConfig.business.name}</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navItems.map((navItem, index) => {
+          const half = navItem.type === 'megamenu' ? Math.ceil(navItem.sections.length / 2) : 0
+          const leftSections = navItem.type === 'megamenu' ? navItem.sections.slice(0, half) : []
+          const rightSections = navItem.type === 'megamenu' ? navItem.sections.slice(half) : []
+          const hasFeatured = navItem.type === 'megamenu' && navItem.featured && navItem.featured.length > 0
+          const fi = featuredIndices[index] ?? 0
+
+          return (
+            <div class="relative group/nav" x-data="{ open: false }">
+              {navItem.type === 'link' && (
+                <a href={navItem.href} class="nav-link">
+                  {navItem.title}
+                </a>
+              )}
+
+              {navItem.type === 'dropdown' && (
+                <>
+                  <button
+                    @mouseenter="open = true"
+                    @mouseleave="open = false"
+                    class="nav-link nav-link--trigger group"
+                  >
+                    {navItem.title}
+                    <ChevronDown className="ml-1 h-3 w-3 opacity-60 transition duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+                  </button>
+                  <div
+                    x-show="open"
+                    @mouseenter="open = true"
+                    @mouseleave="open = false"
+                    x-transition:enter="transition ease-out duration-150"
+                    x-transition:enter-start="opacity-0 translate-y-1"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-100"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2"
+                    style="display: none;"
+                  >
+                    <div class="nav-panel w-[400px]">
+                      <ul class="grid gap-1">
+                        {navItem.items.map((item) => {
+                          const IconComponent = item.icon
+                          return (
+                            <li>
+                              <a href={item.href} class="nav-panel__item">
+                                <div class="flex items-start gap-3">
+                                  {IconComponent && <IconComponent className="shrink-0 mt-0.5 size-4 nav-panel__icon" strokeWidth={1.5} />}
+                                  <div>
+                                    <div class="font-body text-[13px] font-medium" style="color: var(--ink);">{item.title}</div>
+                                    {item.description && (
+                                      <p class="text-[11px] leading-snug mt-0.5" style="color: var(--muted);">
+                                        {item.description}
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              </a>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {navItem.type === 'megamenu' && (
+                <>
+                  <button
+                    @mouseenter="open = true"
+                    @mouseleave="open = false"
+                    @click={navItem.href ? `window.location.href='${navItem.href}'` : undefined}
+                    class="nav-link nav-link--trigger group cursor-pointer"
+                  >
+                    {navItem.title}
+                    <ChevronDown className="ml-1 h-3 w-3 opacity-60 transition duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+                  </button>
+                  <div
+                    x-show="open"
+                    @mouseenter="open = true"
+                    @mouseleave="open = false"
+                    x-transition:enter="transition ease-out duration-150"
+                    x-transition:enter-start="opacity-0 translate-y-1"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-100"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2"
+                    style="display: none;"
+                  >
+                    <div class={`nav-panel grid gap-5 ${hasFeatured ? 'w-[850px] grid-cols-[1fr_1fr_250px]' : 'w-[600px] grid-cols-2'}`}>
+                      <div class="space-y-5">
+                        {leftSections.map((section) => (
+                          <div>
+                            <h4 class="nav-panel__label">{section.label}</h4>
+                            <ul class="mt-2 space-y-1">
+                              {section.items.map((item) => {
+                                const IconComponent = item.icon
+                                return (
+                                  <li>
+                                    <a href={item.href} class="nav-panel__item">
+                                      <div class="flex items-start gap-3">
+                                        {IconComponent && <IconComponent className="shrink-0 mt-0.5 size-4 nav-panel__icon" strokeWidth={1.5} />}
+                                        <div>
+                                          <div class="font-body text-[13px] font-medium" style="color: var(--ink);">{item.title}</div>
+                                          {item.description && (
+                                            <p class="text-[11px] leading-snug mt-0.5" style="color: var(--muted);">
+                                              {item.description}
+                                            </p>
+                                          )}
+                                        </div>
+                                      </div>
+                                    </a>
+                                  </li>
+                                )
+                              })}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+
+                      {rightSections.length > 0 && (
+                        <div class="space-y-5">
+                          {rightSections.map((section) => (
+                            <div>
+                              <h4 class="nav-panel__label">{section.label}</h4>
+                              <ul class="mt-2 space-y-1">
+                                {section.items.map((item) => {
+                                  const IconComponent = item.icon
+                                  return (
+                                    <li>
+                                      <a href={item.href} class="nav-panel__item">
+                                        <div class="flex items-start gap-3">
+                                          {IconComponent && <IconComponent className="shrink-0 mt-0.5 size-4 nav-panel__icon" strokeWidth={1.5} />}
+                                          <div>
+                                            <div class="font-body text-[13px] font-medium" style="color: var(--ink);">{item.title}</div>
+                                            {item.description && (
+                                              <p class="text-[11px] leading-snug mt-0.5" style="color: var(--muted);">
+                                                {item.description}
+                                              </p>
+                                            )}
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </li>
+                                  )
+                                })}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {hasFeatured && navItem.featured && (
+                        <div class="nav-featured">
+                          <h4 class="nav-panel__label mb-3">Featured</h4>
+                          <a href={navItem.featured[fi].href} class="block space-y-2 group">
+                            <div class="aspect-video image-card">
+                              {navItem.featured[fi].image ? (
+                                <img src={navItem.featured[fi].image} alt={navItem.featured[fi].title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                              ) : (
+                                <div class="w-full h-full flex items-center justify-center" style="background: var(--ink);">
+                                  <Play className="size-10 text-white" strokeWidth={1.5} />
+                                </div>
+                              )}
+                            </div>
+                            <h5 class="font-display text-base" style="color: var(--ink);">{navItem.featured[fi].title}</h5>
+                            <p class="text-xs leading-snug" style="color: var(--muted);">{navItem.featured[fi].description}</p>
+                            <span class="text-xs font-medium" style="color: var(--terracotta);">Discover →</span>
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          )
+        })}
+      </nav>
+
+      <!-- CTA -->
+      <div class="hidden lg:flex items-center">
+        <a href={ctaButton.href} class="pill-btn pill-btn--terracotta">
+          {ctaButton.text}
+          <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" strokeWidth={2.25} /></span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        x-data
+        @click="$dispatch('toggle-mobile-menu')"
+        class="lg:hidden inline-flex items-center justify-center rounded-full h-11 w-11 border"
+        style="border-color: var(--hairline); color: var(--ink);"
+        aria-label="Open menu"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    x-data="{ mobileOpen: false }"
+    @toggle-mobile-menu.window="mobileOpen = !mobileOpen"
+    x-show="mobileOpen"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 translate-x-full"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 translate-x-full"
+    class="fixed inset-y-0 right-0 z-50 w-full sm:w-[400px] shadow-xl lg:hidden overflow-y-auto"
+    style="display: none; background: var(--bg-cream);"
+  >
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between px-6 py-5" style="border-bottom: 1px solid var(--hairline);">
+        <h2 class="font-display text-xl" style="color: var(--ink);">Menu</h2>
+        <button
+          @click="mobileOpen = false"
+          class="inline-flex items-center justify-center rounded-full h-10 w-10 hover:bg-black/5"
+          aria-label="Close menu"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-1 mt-4 px-3 flex-1">
+        {navItems.map((navItem) => (
+          <div x-data="{ expanded: false }">
+            {navItem.type === 'link' && (
+              <a href={navItem.href} @click="mobileOpen = false" class="mobile-nav-link">
+                {navItem.title}
+              </a>
+            )}
+
+            {navItem.type === 'dropdown' && (
+              <>
+                <button @click="expanded = !expanded" :aria-expanded="expanded" aria-label="Toggle" class="mobile-nav-link mobile-nav-trigger">
+                  {navItem.title}
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200" x-bind:class="expanded && 'rotate-180'" />
+                </button>
+                <div x-show="expanded" x-collapse class="mt-1">
+                  <div class="space-y-1 mt-1 pl-4">
+                    {navItem.items.map((item) => (
+                      <a href={item.href} @click="mobileOpen = false" class="mobile-sub-link">{item.title}</a>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {navItem.type === 'megamenu' && (
+              <>
+                <button @click="expanded = !expanded" :aria-expanded="expanded" aria-label="Toggle" class="mobile-nav-link mobile-nav-trigger">
+                  {navItem.title}
+                  <ChevronDown className="h-4 w-4 transition-transform duration-200" x-bind:class="expanded && 'rotate-180'" />
+                </button>
+                <div x-show="expanded" x-collapse class="mt-1">
+                  <div class="space-y-4 mt-2 pl-2">
+                    {navItem.sections.map((section) => (
+                      <div>
+                        <p class="nav-panel__label px-3 mb-1">{section.label}</p>
+                        <div class="space-y-1">
+                          {section.items.map((item) => (
+                            <a href={item.href} @click="mobileOpen = false" class="mobile-sub-link">{item.title}</a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+
+        <div class="mt-6 mb-4" style="border-top: 1px solid var(--hairline);" />
+
+        <a href={ctaButton.href} @click="mobileOpen = false" class="pill-btn pill-btn--terracotta justify-center w-full py-4">
+          {ctaButton.text}
+          <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" strokeWidth={2.25} /></span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div
+    x-data="{ mobileOpen: false }"
+    @toggle-mobile-menu.window="mobileOpen = !mobileOpen"
+    x-show="mobileOpen"
+    @click="mobileOpen = false; $dispatch('toggle-mobile-menu')"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="fixed inset-0 bg-black/40 z-40 lg:hidden"
+    style="display: none;"
+  ></div>
+</header>
+
+<style>
+  .marquee-bar {
+    background: var(--terracotta);
+    color: #fff;
+    overflow: hidden;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    height: 34px;
+    display: flex;
+    align-items: center;
+  }
+  .marquee-viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .marquee-dot {
+    opacity: 0.75;
+    font-size: 0.65rem;
+  }
+
+  .nav-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--bg-cream);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-style: italic;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1;
+  }
+  .nav-brand:hover { color: var(--terracotta); }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.95rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.005em;
+  }
+  .nav-link:hover {
+    color: var(--terracotta);
+    background: rgba(232, 80, 10, 0.06);
+  }
+
+  .nav-utility {
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    transition: background 0.2s ease;
+    cursor: pointer;
+  }
+  .nav-utility:hover { background: rgba(0,0,0,0.05); }
+
+  .nav-panel {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 20px 50px -12px rgba(26,26,26,0.15);
+    color: var(--ink);
+  }
+  .nav-panel__label {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .nav-panel__item {
+    display: block;
+    padding: 0.5rem 0.6rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-panel__item:hover { background: var(--bg-cream); }
+  .nav-panel__icon { color: var(--terracotta); }
+  .nav-featured {
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--hairline);
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .mobile-nav-link:hover { background: rgba(0,0,0,0.04); }
+  .mobile-sub-link {
+    display: block;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .mobile-sub-link:hover { background: rgba(0,0,0,0.04); color: var(--ink); }
+</style>

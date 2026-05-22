@@ -1,0 +1,146 @@
+{
+  "title": "Display (Geofencing)",
+  "description": "Location-based display advertising that targets customers where they are.",
+  "keywords": "display advertising Denver, geofencing advertising Denver, location-based advertising",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Branding & Awareness",
+      "title": "Target Customers Where They Are with Geofencing",
+      "description": "Use location data to reach your audience on the websites they love most.",
+      "buttonText": "Get Started",
+      "buttonHref": "/contact",
+      "image": "/images/geofencing.avif",
+      "imageAlt": "Geofencing location-based advertising map"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Precision Targeting with Geofencing Technology",
+      "description": "Leveraging Geofencing technology, Display Advertising targets precise geographic regions, delivering personalized ads to users within and near those locations. For even greater local impact, combine geofencing with <a class='underline font-bold' href='/screen-advertising'>indoor digital billboard advertising</a> to reach customers both online and in person.",
+      "image": "/images/geofencing-content.avif",
+      "imageAlt": "Display advertising geofencing technology",
+      "imagePosition": "right"
+    },
+    {
+      "type": "features",
+      "title": "Four Advantages of Display Advertising",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "target",
+          "title": "Precision Targeting",
+          "description": "Reach highly specific audiences at the right time and place."
+        },
+        {
+          "icon": "globe",
+          "title": "Brand Awareness",
+          "description": "Increase your brand visibility across thousands of premium websites."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Competitive Advantage",
+          "description": "Target customers at your competitors' locations and retarget them with <a class='underline font-bold' href='/social-media-advertising'>social media ads</a>."
+        },
+        {
+          "icon": "monitor",
+          "title": "Real-Time Insights",
+          "description": "Track impressions, clicks, conversions, and exposure with detailed analytics."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Your Path to Powerful Branding and Awareness",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "target",
+          "title": "Strategy",
+          "description": "We identify your target audience and define geographic zones.",
+          "image": "/images/geofencing-strategy.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Execution",
+          "description": "We design compelling display ads and launch your campaign.",
+          "image": "/images/geofencing-execution.jpeg"
+        },
+        {
+          "icon": "trending",
+          "title": "Measure",
+          "description": "Track impressions, clicks, website visits, and conversions.",
+          "image": "/images/geofencing-measure.jpeg"
+        },
+        {
+          "icon": "settings",
+          "title": "Optimize",
+          "description": "We continuously analyze and adjust strategies.",
+          "image": "/images/geofencing-optimized.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Target Customers Where They Are?",
+      "description": "Launch your geofencing campaign and reach your ideal customers with precision.",
+      "buttonText": "Start Your Campaign",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Common Questions About Display Advertising and Geofencing",
+      "faqs": [
+        {
+          "question": "Will Display Ads with Geofencing help me generate leads?",
+          "answer": "Yes! Display advertising with geofencing is highly effective for lead generation. For even faster results, pair it with <a class='underline font-bold' href='/ppc'>pay-per-click advertising</a> to capture high-intent searchers."
+        },
+        {
+          "question": "Can you place a fence around any location?",
+          "answer": "Absolutely! We can create geofences around any location."
+        },
+        {
+          "question": "How does geofencing work with other marketing channels?",
+          "answer": "Geofencing pairs perfectly with <a class='underline font-bold' href='/connected-tv'>connected TV advertising</a> and <a class='underline font-bold' href='/social-media-advertising'>social media ads</a> for a comprehensive multichannel strategy."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

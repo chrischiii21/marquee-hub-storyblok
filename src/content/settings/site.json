@@ -1,0 +1,41 @@
+{
+  "business": {
+    "name": "Dealer Template",
+    "fullName": "John Doe",
+    "tagline": "Premium Marketing Solutions",
+    "description": "Local Advertising and Digital Marketing Pros\n"
+  },
+  "location": {
+    "city": "Denver",
+    "state": "Colorado",
+    "address": "123 Main Street",
+    "fullAddress": "123 Main St, Denver, CO 80202"
+  },
+  "contact": {
+    "email": "hello@acmeinc.com",
+    "phone": "3035551234",
+    "phoneFormatted": "(303) 555-1234"
+  },
+  "colors": {
+    "primary": "#110133",
+    "secondary": "#006b68",
+    "tertiary": "#4DD599",
+    "quaternary": "#FFDC34"
+  },
+  "logo": {
+    "src": "/images/logo.avif",
+    "alt": "Acme Inc. Logo"
+  },
+  "seo": {
+    "siteName": "Acme Inc.",
+    "defaultTitle": "Acme Inc. | Digital Marketing in Denver",
+    "defaultDescription": "Denver's trusted digital marketing agency. Indoor billboard ads, web design, PPC, social media & Connected TV. Free consultation!",
+    "keywords": "digital marketing Denver, local advertising Denver, indoor billboard advertising, website design Denver, PPC advertising, social media management, Connected TV advertising, OTT ads, geofencing, local SEO Denver",
+    "siteUrl": "https://www.ntv360.space",
+    "ogImage": "https://ntv-template-1.vercel.app/logo/dealer-logo.avif",
+    "twitterHandle": "@acmeinc"
+  },
+  "analytics": {
+    "googleAnalyticsId": "G-QEQQ6YYRE4"
+  }
+}

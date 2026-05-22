@@ -1,0 +1,169 @@
+{
+  "title": "Marketing Solutions",
+  "description": "Explore our full suite of indoor billboard and digital marketing services designed to keep your brand visible.",
+  "keywords": "marketing solutions Denver, digital marketing services Denver, full service marketing Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Digital Marketing",
+      "title": "Digital Marketing Services",
+      "description": "A full range of services to make your business a digital powerhouse!",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/digital-marketing.avif",
+      "imageAlt": "Comprehensive digital marketing services overview"
+    },
+    {
+      "type": "valueCards",
+      "title": "A Digital Marketing Powerhouse",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "users",
+          "title": "Reach More People",
+          "description": "Use multiple channels like <a class='underline font-bold' href='/screen-advertising'>indoor billboards</a> and <a class='underline font-bold' href='/social-media-advertising'>social media ads</a> to connect with a wider audience.",
+          "image": "/images/reach-more-people.avif"
+        },
+        {
+          "icon": "message",
+          "title": "Increase Engagement",
+          "description": "Connect with users on their preferred channels, where they're more likely to engage.",
+          "image": "/images/increase-engagement.avif"
+        },
+        {
+          "icon": "award",
+          "title": "Consistent Brand Image",
+          "description": "Maintain a uniform brand image across channels to make your brand recognizable.",
+          "image": "/images/brand-image.avif"
+        },
+        {
+          "icon": "target",
+          "title": "Simplify Customer Path",
+          "description": "Create more touch points in the customer journey.",
+          "image": "/images/customer-path.avif"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "title": "Multichannel Marketing",
+      "columns": 3,
+      "features": [
+        {
+          "icon": "tv",
+          "title": "Screen Advertising",
+          "description": "Our hyper-local <a class='underline font-bold' href='/screen-advertising'>digital screens</a> showcase your personalized motion ad on repeat."
+        },
+        {
+          "icon": "monitor",
+          "title": "Website Design",
+          "description": "Collaborate with our skilled creative team to craft a <a class='underline font-bold' href='/website-design'>visually stunning website</a>."
+        },
+        {
+          "icon": "globe",
+          "title": "Google Business Profile",
+          "description": "Your <a class='underline font-bold' href='/google-business'>Google Business Profile</a> is the open sign on your digital storefront."
+        },
+        {
+          "icon": "share",
+          "title": "Social Media Management",
+          "description": "Amplify your brand online with <a class='underline font-bold' href='/social-media-management'>strategic management</a> and captivating content."
+        },
+        {
+          "icon": "dollar",
+          "title": "Pay-Per-Click (PPC)",
+          "description": "Drive leads and dominate search engine results pages with <a class='underline font-bold' href='/ppc'>targeted PPC campaigns</a>."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Social Media Ads",
+          "description": "Use targeted messaging to reach your ideal customers with <a class='underline font-bold' href='/social-media-advertising'>social media advertising</a>."
+        },
+        {
+          "icon": "target",
+          "title": "Display Advertising | Geofencing",
+          "description": "Leverage <a class='underline font-bold' href='/geofencing'>location-targeted ads</a> to reach users online and on their devices."
+        },
+        {
+          "icon": "tv",
+          "title": "Connected TV | OTT Ads",
+          "description": "Put your brand front and center to a <a class='underline font-bold' href='/connected-tv'>streaming audience</a>."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Streaming Audio",
+          "description": "Streamline your message directly into listeners' favorite <a class='underline font-bold' href='/streaming-audio'>podcasts or music</a>."
+        },
+        {
+          "icon": "palette",
+          "title": "Design Services",
+          "description": "Our skilled designers transform your vision into <a class='underline font-bold' href='/design-services'>exceptional graphic design</a>."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Grow Your Business?",
+      "description": "Let us help you create a comprehensive marketing strategy that drives real results.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "badge": "FAQs",
+      "title": "Frequently Asked Questions",
+      "faqs": [
+        {
+          "question": "Which marketing service is right for my business?",
+          "answer": "It depends on your goals! We offer free consultations to help you determine the best strategy for your business. <a class='underline font-bold' href='/about'>Learn more about our team</a> and how we approach each project."
+        },
+        {
+          "question": "Can I combine multiple services?",
+          "answer": "Absolutely! In fact, multichannel marketing is often the most effective approach for maximum reach and results."
+        },
+        {
+          "question": "How quickly can I see results?",
+          "answer": "Results vary by service. <a class='underline font-bold' href='/ppc'>PPC</a> and <a class='underline font-bold' href='/social-media-advertising'>social ads</a> can show results within days, while SEO and brand building take longer but provide lasting value."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "description": "We're proud to serve businesses throughout the Denver metro area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

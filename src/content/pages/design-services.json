@@ -1,0 +1,174 @@
+{
+  "title": "Design Services",
+  "description": "Professional design services to elevate your brand identity.",
+  "keywords": "graphic design Denver, logo design Denver, brand design services, flyer design Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Foundational",
+      "title": "Design Services",
+      "description": "From logos to flyers and product packaging, our team can create what you need to make your business stand out.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/design-services.avif",
+      "imageAlt": "Professional graphic design services and branding"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Graphic Design",
+      "description": "Graphic design holds a pivotal role in shaping your company's identity and marketing strategy. Whether it's a dazzling new logo, a complete rebrand, or captivating flyers, our experienced in-house designers are prepared to transform your vision into reality. We also create ad creative for <a class='underline font-bold' href='/screen-advertising'>indoor digital billboard campaigns</a> and <a class='underline font-bold' href='/social-media-advertising'>social media advertising</a>.",
+      "image": "/images/graphic-design.avif",
+      "imageAlt": "Creative graphic design and branding work",
+      "imagePosition": "right"
+    },
+    {
+      "type": "features",
+      "title": "Explore Our Graphic Design Services",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "palette",
+          "title": "Idea Execution",
+          "description": "From concept to creation, we'll build visually appealing designs aligned with your vision."
+        },
+        {
+          "icon": "target",
+          "title": "Project Based Services",
+          "description": "Top talent and expertise without long-term commitments or added payroll costs."
+        },
+        {
+          "icon": "share",
+          "title": "Access to Experts",
+          "description": "Tap into a varied pool of skilled designers with unique styles and perspectives."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Competitive Advantage",
+          "description": "Professionally designed materials stand out from the crowd."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Design Skills for All Your Needs",
+      "variant": "overlay",
+      "cards": [
+        {
+          "icon": "palette",
+          "title": "Brand Identity",
+          "description": "Create memorable logos and cohesive brand guidelines.",
+          "image": "/images/brand-image.avif"
+        },
+        {
+          "icon": "award",
+          "title": "Product Packaging",
+          "description": "Eye-catching packaging designs that make your products stand out.",
+          "image": "/images/product-packaging.avif"
+        },
+        {
+          "icon": "trending",
+          "title": "Infographics",
+          "description": "Visual storytelling that transforms complex data into engaging graphics.",
+          "image": "/images/infographics.avif"
+        },
+        {
+          "icon": "target",
+          "title": "Business Card",
+          "description": "Professional business cards that make a lasting first impression.",
+          "image": "/images/business-card.avif"
+        },
+        {
+          "icon": "zap",
+          "title": "Flyers",
+          "description": "Compelling promotional flyers that drive action.",
+          "image": "/images/flyers.avif"
+        },
+        {
+          "icon": "globe",
+          "title": "Social Media Creative",
+          "description": "Scroll-stopping social media graphics optimized for engagement. Perfect for <a class='underline font-bold' href='/social-media-management'>social media management</a> campaigns.",
+          "image": "/images/social-media-creative.avif"
+        },
+        {
+          "icon": "settings",
+          "title": "Menu",
+          "description": "Beautiful menu designs that enhance dining experiences.",
+          "image": "/images/menu.avif"
+        },
+        {
+          "icon": "message",
+          "title": "Brochures",
+          "description": "Informative brochures that effectively communicate your services.",
+          "image": "/images/brochures.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Elevate Your Brand?",
+      "description": "Let our expert designers bring your vision to life with professional graphic design services.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Design Service Common Questions",
+      "faqs": [
+        {
+          "question": "How much do the services cost?",
+          "answer": "Costs may fluctuate based on the required service and the extent of the project."
+        },
+        {
+          "question": "What if I do not have my original working design files?",
+          "answer": "No worries. We can still proceed with the project; however, it may require additional time."
+        },
+        {
+          "question": "Can you design a website too?",
+          "answer": "Absolutely! Our <a class='underline font-bold' href='/website-design'>website design team</a> builds custom sites that perfectly match your brand identity."
+        },
+        {
+          "question": "What if I need services off and on throughout the year?",
+          "answer": "We offer design services year round. From holiday graphics to seasonal menus, we can accommodate your needs."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Locations",
+  "description": "Our network of indoor digital billboards is located within retail and restaurant venues across your local community.",
+  "keywords": "indoor billboard locations Denver, digital signage locations Denver, screen advertising venues Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Indoor Billboard Network",
+      "title": "Our Network Partners",
+      "description": "Check out where you could be seen in the community with our screen advertising network.",
+      "buttonText": "START ADVERTISING",
+      "buttonHref": "/screen-advertising",
+      "image": "/images/locations.avif",
+      "imageAlt": "Indoor billboard network locations across Denver"
+    },
+    {
+      "type": "locations",
+      "title": "Our Locations",
+      "description": "Our screens can be found in many popular locations throughout the community. Interested in hosting a screen? Become a venue partner.",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Get Your Brand Seen?",
+      "description": "Whether you want to advertise or host a screen, we've got you covered.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

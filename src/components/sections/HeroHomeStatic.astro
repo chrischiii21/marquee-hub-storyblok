@@ -1,0 +1,253 @@
+---
+import { siteConfig } from "@/config/site"
+import { ArrowUpRight } from "lucide-react"
+
+interface Props {
+  badge?: string
+  title: string
+  subtitle: string
+  buttonText?: string
+  buttonHref?: string
+  image: string
+  imageAlt?: string
+  secondaryImage?: string
+  secondaryImageAlt?: string
+}
+
+const {
+  badge,
+  title,
+  subtitle,
+  buttonText = "Talk to Our Team",
+  buttonHref = "/contact",
+  image,
+  imageAlt = "Hero background",
+  secondaryImage,
+  secondaryImageAlt = "",
+} = Astro.props
+
+const portraitImage = secondaryImage ?? image
+
+const processText = (text: string) =>
+  text
+    .replaceAll("{city}", siteConfig.location.city)
+    .replaceAll("{state}", siteConfig.location.state)
+    .replaceAll("{business}", siteConfig.business.name)
+
+const processedTitle = processText(title)
+const processedSubtitle = processText(subtitle)
+const processedBadge = badge ? processText(badge) : undefined
+
+// Split title for editorial emphasis (first 3 words italic if possible)
+const titleWords = processedTitle.split(" ")
+const firstChunk = titleWords.slice(0, Math.max(1, Math.min(3, titleWords.length - 1))).join(" ")
+const restChunk = titleWords.slice(Math.max(1, Math.min(3, titleWords.length - 1))).join(" ")
+---
+
+<section class="hero-home">
+  <div class="container mx-auto px-4 md:px-8 py-6 md:py-10">
+    <div class="hero-grid">
+      <!-- Large image card (left, 2 cols) -->
+      <article class="image-card hero-main">
+        <picture>
+          <source media="(min-width: 768px)" srcset={image} type="image/avif" />
+        </picture>
+        <img
+          src={image}
+          alt={imageAlt}
+          class="hero-main__img"
+          fetchpriority="high"
+          loading="eager"
+          width="1920"
+          height="1080"
+          decoding="async"
+        />
+        <div class="image-card__body hero-main__body">
+          <a href={buttonHref} class="pill-btn">
+            Explore Our Network
+            <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Right column: stacked portrait + dark CTA card -->
+      <div class="hero-side">
+        <article class="image-card hero-portrait">
+          <img src={portraitImage} alt={secondaryImageAlt} class="hero-portrait__img" loading="eager" decoding="async" />
+          <div class="hero-portrait__caption">
+            <span class="hero-portrait__kicker">Featured Network</span>
+            <h3 class="hero-portrait__title">{siteConfig.business.name.toUpperCase()}<br /><span class="hero-portrait__year">2026</span></h3>
+          </div>
+          <a href={buttonHref} class="hero-portrait__pin" aria-label="Read more">
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </article>
+
+        <article class="dark-card hero-cta">
+          {processedBadge && (
+            <span class="chip-label chip-label--light hero-cta__chip">{processedBadge}</span>
+          )}
+          <h1 class="hero-cta__title">
+            <span class="italic">{firstChunk}</span>{restChunk && ' '}{restChunk}
+          </h1>
+          <p class="hero-cta__sub">{processedSubtitle}</p>
+          <a href={buttonHref} class="pill-btn pill-btn--light">
+            {buttonText}
+            <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-home {
+    background: var(--bg-cream);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.25rem;
+      min-height: 640px;
+    }
+  }
+
+  .hero-main {
+    position: relative;
+    min-height: 400px;
+    aspect-ratio: 4/5;
+    background: #2a1f18;
+  }
+  @media (min-width: 900px) {
+    .hero-main { aspect-ratio: auto; min-height: 640px; }
+  }
+  .hero-main__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-main__body {
+    padding: 1.25rem;
+  }
+
+  .hero-side {
+    display: grid;
+    grid-template-rows: 1fr 1.1fr;
+    gap: 1.25rem;
+    min-height: 640px;
+  }
+  @media (max-width: 899px) {
+    .hero-side { grid-template-rows: auto auto; min-height: auto; }
+  }
+
+  .hero-portrait {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #b07050;
+    min-height: 280px;
+  }
+  .hero-portrait::after { display: none; }
+  .hero-portrait__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    opacity: 0.95;
+  }
+  .hero-portrait__caption {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    text-align: right;
+    z-index: 2;
+    color: var(--ink);
+  }
+  .hero-portrait__kicker {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .hero-portrait__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 1.05;
+    margin-top: 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-portrait__year {
+    font-style: italic;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  .hero-portrait__pin {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: var(--bg-cream);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 8px 20px -4px rgba(0,0,0,0.35);
+  }
+  .hero-portrait__pin:hover {
+    background: var(--terracotta);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .hero-cta {
+    padding: 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    min-height: 300px;
+  }
+  @media (min-width: 900px) {
+    .hero-cta { padding: 2.25rem; }
+  }
+  .hero-cta__chip { align-self: flex-start; }
+  .hero-cta__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.15;
+    color: #fff !important;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .hero-cta__title .italic {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .hero-cta__sub {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+  }
+  .hero-cta .pill-btn { align-self: flex-start; }
+</style>

@@ -1,0 +1,402 @@
+---
+import popupSettings from '../content/settings/popup.json';
+
+interface Props {
+  triggerId?: string; // ID of button that will trigger the popup
+  showOnce?: boolean; // Only show once per session
+}
+
+const {
+  triggerId = "",
+  showOnce = true,
+} = Astro.props;
+
+// Read from CMS settings
+const isEnabled = popupSettings.enabled ?? false;
+const title = popupSettings.title || "Get Your Free Marketing Consultation";
+const description = popupSettings.description || "Let us help you grow your business.";
+const ctaText = popupSettings.buttonText || "Schedule Free Consultation";
+const ctaLink = popupSettings.buttonHref || "/contact";
+const popupImage = popupSettings.image || "https://ntv-template-1.vercel.app/images/home.avif";
+const delay = (popupSettings.delay || 3) * 1000; // Convert seconds to ms
+---
+
+{isEnabled && (
+<div
+  id="popup-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm"
+  data-delay={delay}
+  data-show-once={showOnce}
+  data-trigger-id={triggerId}
+>
+  <!-- Modal Container -->
+  <div
+    class="relative w-full max-w-4xl mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden animate-scale-in"
+  >
+    <!-- Close Button -->
+    <button
+      id="close-popup"
+      class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-lg hover:bg-gray-100 hover:shadow-xl hover:scale-110 hover:rotate-90 transition-all duration-200"
+      aria-label="Close popup"
+    >
+      <svg
+        class="w-5 h-5 text-gray-700 hover:text-gray-900 transition-colors"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Two Column Layout -->
+    <div class="flex flex-col md:flex-row">
+      <!-- Left Side - Image -->
+      <div class="md:w-2/5 relative bg-brand-primary hidden md:block overflow-hidden">
+        <img
+          src={popupImage}
+          alt="Marketing consultation"
+          width="400"
+          height="600"
+          class="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30"></div>
+        <div class="absolute bottom-8 left-8 right-8 drop-shadow-lg">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/25 backdrop-blur-md border border-white/30 rounded-full mb-3 shadow-lg"
+          >
+            <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            <span
+              class="text-xs font-bold text-white uppercase tracking-wide"
+              >Limited Time Offer</span>
+          </div>
+          <h3 id="popup-image-title" class="text-2xl md:text-3xl font-bold leading-tight">
+            {title}
+          </h3>
+        </div>
+      </div>
+
+      <!-- Right Side - Content -->
+      <div
+        class="w-full md:w-3/5 px-10 py-12 flex flex-col justify-center space-y-7"
+      >
+        <!-- Headline -->
+        <div class="space-y-3">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-foreground leading-tight"
+          >
+            Ready to Grow Your Business?
+          </h2>
+          <p class="text-base text-muted-foreground leading-relaxed">
+            Get expert marketing strategies tailored for Denver businesses.
+            Let's discuss how we can help you succeed.
+          </p>
+        </div>
+
+        <!-- Benefits List -->
+        <ul class="space-y-4">
+          <li class="flex items-center gap-4">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-secondary flex items-center justify-center"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <span class="text-sm text-foreground font-medium"
+              >Free 30-minute strategy session</span
+            >
+          </li>
+          <li class="flex items-center gap-4">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-tertiary flex items-center justify-center"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <span class="text-sm text-foreground font-medium"
+              >Custom campaign recommendations</span
+            >
+          </li>
+          <li class="flex items-center gap-4">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-primary flex items-center justify-center"
+            >
+              <svg
+                class="w-5 h-5 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <span class="text-sm text-foreground font-medium"
+              >No commitment or pressure</span
+            >
+          </li>
+        </ul>
+
+        <!-- CTA Button -->
+        <a
+          href={ctaLink}
+          class="block w-full px-6 py-3 bg-brand-primary text-white text-center font-bold text-base rounded-lg md:rounded-xl shadow-lg hover:opacity-90 hover:shadow-2xl transition-all duration-300"
+        >
+          {ctaText}
+        </a>
+
+        <!-- Trust Indicators -->
+        <div
+          class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground pt-2"
+        >
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-5 h-5 text-brand-secondary"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-semibold">20+ Years Experience</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-5 h-5 text-brand-tertiary"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-semibold">Denver Experts</span>
+          </div>
+        </div>
+
+        <!-- Secondary Action -->
+        <button
+          id="close-popup-bottom"
+          class="block w-full text-sm text-muted-foreground text-center underline hover:text-foreground hover:no-underline transition-all duration-300"
+        >
+          No thanks, I'll browse first
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+)}
+
+<script>
+  // Track if listeners have been initialized (outside the function so it persists)
+  let escapeListenerAdded = false;
+
+  function showPopup() {
+    const popup = document.getElementById("popup-modal");
+    if (!popup) {
+      console.log("Popup element not found");
+      return;
+    }
+
+    console.log("Showing popup");
+    popup.classList.remove("hidden");
+    popup.classList.add("flex");
+    document.body.style.overflow = "hidden";
+
+    // Mark as shown for auto-show prevention
+    const showOnce = popup.getAttribute("data-show-once") === "true";
+    if (showOnce) {
+      sessionStorage.setItem("popup-shown", "true");
+    }
+  }
+
+  function closePopup() {
+    const popup = document.getElementById("popup-modal");
+    if (!popup) return;
+
+    console.log("Closing popup");
+    popup.classList.add("hidden");
+    popup.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+
+  function initPopup() {
+    console.log("Initializing popup");
+    const popup = document.getElementById("popup-modal");
+    if (!popup) {
+      console.log("Popup modal element not found!");
+      return;
+    }
+
+    const showOnce = popup.getAttribute("data-show-once") === "true";
+    const storageKey = "popup-shown";
+    const triggerId = popup.getAttribute("data-trigger-id");
+    const alreadyShown = showOnce && sessionStorage.getItem(storageKey);
+
+    console.log("Popup config:", { showOnce, alreadyShown, triggerId });
+
+    // Setup close buttons (only once)
+    const closeBtn = document.getElementById("close-popup");
+    const closeBottomBtn = document.getElementById("close-popup-bottom");
+
+    if (closeBtn && !closeBtn.hasAttribute('data-listener-attached')) {
+      closeBtn.addEventListener("click", closePopup);
+      closeBtn.setAttribute('data-listener-attached', 'true');
+    }
+
+    if (closeBottomBtn && !closeBottomBtn.hasAttribute('data-listener-attached')) {
+      closeBottomBtn.addEventListener("click", closePopup);
+      closeBottomBtn.setAttribute('data-listener-attached', 'true');
+    }
+
+    // Close on backdrop click (only once)
+    if (!popup.hasAttribute('data-backdrop-listener')) {
+      popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+          closePopup();
+        }
+      });
+      popup.setAttribute('data-backdrop-listener', 'true');
+    }
+
+    // Close on Escape key (only once using module-level variable)
+    if (!escapeListenerAdded) {
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !popup.classList.contains("hidden")) {
+          closePopup();
+        }
+      });
+      escapeListenerAdded = true;
+    }
+
+    // Setup trigger button if specified (only once)
+    if (triggerId) {
+      const triggerBtn = document.getElementById(triggerId);
+      if (triggerBtn && !triggerBtn.hasAttribute('data-popup-trigger')) {
+        triggerBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          showPopup();
+        });
+        triggerBtn.setAttribute('data-popup-trigger', 'true');
+      }
+    }
+
+    // Show popup after delay ONLY if not already shown in this session
+    const delay = parseInt(popup.getAttribute("data-delay") || "0") || 0;
+    const isDesktop = window.innerWidth >= 768;
+    
+    console.log("Delay check:", { delay, isDesktop, alreadyShown, windowWidth: window.innerWidth });
+
+    // Only auto-show if: delay is positive, on desktop, NOT already shown, and not already scheduled
+    if (delay > 0 && isDesktop && !alreadyShown && !popup.hasAttribute('data-scheduled')) {
+      console.log(`Setting timeout for ${delay}ms`);
+      popup.setAttribute('data-scheduled', 'true');
+      setTimeout(function () {
+        // Double-check it hasn't been shown yet
+        if (window.innerWidth >= 768 && !sessionStorage.getItem(storageKey)) {
+          showPopup();
+        } else {
+          console.log("Popup already shown or window resized, skipping");
+        }
+      }, delay);
+    } else {
+      console.log("Popup will not auto-show:", { 
+        delayPositive: delay > 0, 
+        isDesktop, 
+        notShownBefore: !alreadyShown,
+        notScheduled: !popup.hasAttribute('data-scheduled')
+      });
+    }
+  }
+
+  // Run on initial load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPopup);
+  } else {
+    initPopup();
+  }
+
+  // Also run on Astro page transitions
+  document.addEventListener("astro:page-load", initPopup);
+</script>
+
+<style>
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+
+  /* Optimize rendering performance */
+  section {
+    will-change: auto;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Override global button styles for modal close button */
+  #close-popup,
+  #close-popup-bottom {
+    position: absolute !important;
+    overflow: visible !important;
+  }
+
+  #close-popup,
+  #close-popup svg {
+    transform: none !important;
+  }
+
+  #close-popup:hover {
+    transform: scale(1.1) rotate(90deg) !important;
+  }
+
+  #close-popup:active {
+    transform: scale(0.95) !important;
+  }
+
+  #close-popup-bottom {
+    position: static !important;
+    transform: none !important;
+  }
+
+  #popup-image-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.9) !important;
+  }
+</style>

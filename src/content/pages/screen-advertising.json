@@ -1,0 +1,152 @@
+{
+  "title": "Screen Advertising",
+  "description": "Advertise on screens in your local community to reach your target audience.",
+  "keywords": "indoor digital billboard advertising Denver, screen advertising Denver, digital signage advertising",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Indoor Billboard Network",
+      "title": "Indoor Digital Billboard Advertising",
+      "description": "Connecting brands with audiences everywhere.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/advertising.avif",
+      "imageAlt": "Indoor digital billboard screen advertising"
+    },
+    {
+      "type": "content",
+      "variant": "card",
+      "title": "Screen Network Ads",
+      "description": "Your personalized motion advertisement will be showcased repeatedly across our hyper-local digital screen network, reaching individuals as they navigate their daily routines. With your name, brand, and logo prominently displayed, you'll stay at the forefront of existing customers' minds while building brand awareness among potential new customers. Pair screen ads with <a class='underline font-bold' href='/connected-tv'>connected TV advertising</a> or <a class='underline font-bold' href='/geofencing'>geofencing campaigns</a> for even greater reach.",
+      "image": "/images/advertising-content.avif",
+      "imageAlt": "Digital billboard network in high-traffic venues",
+      "imagePosition": "left"
+    },
+    {
+      "type": "features",
+      "title": "5 Benefits of Screen Network",
+      "columns": 3,
+      "features": [
+        {
+          "icon": "map-pin",
+          "title": "Local Reach",
+          "description": "Strategically positioned in high-traffic areas for direct engagement with your local audience."
+        },
+        {
+          "icon": "player-play",
+          "title": "Non-Skippable",
+          "description": "Guarantees continuous exposure to a captivated audience."
+        },
+        {
+          "icon": "star",
+          "title": "Brand Recall",
+          "description": "Repeated exposure creates greater brand recall compared to other marketing channels."
+        },
+        {
+          "icon": "refresh",
+          "title": "Update Your Message",
+          "description": "Promptly adjust marketing messages to respond to changing market dynamics."
+        },
+        {
+          "icon": "arrows-left-right",
+          "title": "Cross Channel Compliment",
+          "description": "Perfect addition to channels like <a class='underline font-bold' href='/social-media-advertising'>social media advertising</a> for an integrated strategy."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Process of Joining Our Screen Network",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "message",
+          "title": "Step 1: Consultation",
+          "description": "We'll get to know your brand, messaging, and important images.",
+          "image": "/images/on-boarding.avif"
+        },
+        {
+          "icon": "palette",
+          "title": "Step 2: Ad Creation",
+          "description": "We'll develop your full-motion ad and send it for approval.",
+          "image": "/images/content-development.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Step 3: Campaign Launch",
+          "description": "We'll deploy your ad across our network locations.",
+          "image": "/images/execution.jpeg"
+        },
+        {
+          "icon": "wrench",
+          "title": "Step 4: Maintenance + Updates",
+          "description": "We'll keep your ad up-to-date and engaging.",
+          "image": "/images/reporting.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Advertise on Our Screen Network?",
+      "description": "Get your brand in front of thousands of local customers with our indoor digital billboard network.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Screen Network Common Questions",
+      "faqs": [
+        {
+          "question": "What if I want a screen inside my location?",
+          "answer": "Reach out to see if your business qualifies to join our network. <a class='underline font-bold' href='/venue-partner'>Become a venue partner</a> today!"
+        },
+        {
+          "question": "What if I already have content for my campaigns?",
+          "answer": "Even better! We can create content for the entire year matching your seasonal campaigns. Our <a class='underline font-bold' href='/design-services'>design services</a> team can also help refresh your creative assets."
+        },
+        {
+          "question": "What if I need to run an ad for only a short time?",
+          "answer": "Not a problem, we deal with events and promotions all the time."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Our Network Locations",
+      "description": "Our billboard network spans across Denver's most popular neighborhoods",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

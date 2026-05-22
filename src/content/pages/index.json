@@ -1,0 +1,171 @@
+{
+  "title": "Denver Digital Marketing | Billboard Ads & Web Design",
+  "description": "Denver's premier digital marketing agency. Indoor billboards, web design, PPC, social media & Connected TV ads. Free consultation!",
+  "keywords": "digital marketing Denver, indoor billboard advertising Denver, local advertising Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Premium Marketing Solutions",
+      "title": "Local Advertising and Digital Marketing Pros in {city}",
+      "subtitle": "Helping Businesses Get Noticed, On Screens and Online",
+      "buttonText": "Talk to Our Team",
+      "buttonHref": "/contact",
+      "image": "/images/home.avif",
+      "imageAlt": "Denver digital marketing",
+      "secondaryImage": "/images/home.avif",
+      "secondaryImageAlt": "Featured network showcase"
+    },
+    {
+      "type": "features",
+      "badge": "Explore Our Digital Marketing Services",
+      "title": "Local Advertising Solutions for {city} Businesses",
+      "description": "Our billboard network gives you access to high-traffic locations where your ideal customers spend time.",
+      "columns": 4,
+      "features": [
+        {
+          "icon": "monitor",
+          "title": "Indoor Billboard Advertising",
+          "description": "High-impact screen advertising in premium indoor locations"
+        },
+        {
+          "icon": "share",
+          "title": "Social Media Marketing",
+          "description": "Build and engage your audience with strategic social media content"
+        },
+        {
+          "icon": "globe",
+          "title": "Custom Website Design",
+          "description": "Professional websites that convert visitors into customers"
+        },
+        {
+          "icon": "target",
+          "title": "Targeted Lead Generation",
+          "description": "Strategic geofencing campaigns that generate quality leads"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "variant": "card",
+      "title": "{city}'s Premier Venue Partner Network",
+      "description": "Our digital marketing pros have built exclusive partnerships with {city}'s most popular venues and businesses.",
+      "image": "/images/venue-partner-mobile.avif",
+      "imageAlt": "Denver venue partners",
+      "imagePosition": "left",
+      "buttonText": "View Venue Partners",
+      "buttonHref": "/venue-partner",
+      "features": [
+        {
+          "icon": "target",
+          "text": "Exclusive venue partnerships"
+        },
+        {
+          "icon": "clock",
+          "text": "High-dwell-time locations"
+        },
+        {
+          "icon": "zap",
+          "text": "Targeted audience reach"
+        },
+        {
+          "icon": "check",
+          "text": "Flexible campaign options"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "variant": "default",
+      "title": "Full-Service Digital Marketing from {city} Pros",
+      "description": "Beyond screen ads, our {city} marketing pros provide full-scale digital marketing to help your business show up, stand out, and grow.",
+      "image": "/images/boost-visibility.avif",
+      "imageAlt": "Digital marketing services",
+      "imagePosition": "right",
+      "buttonText": "View All Marketing Solutions",
+      "buttonHref": "/solutions",
+      "features": [
+        {
+          "icon": "google",
+          "text": "<strong><a class='underline font-bold' href='/google-business'>Google Business Profile Setup</a></strong>. Get found by customers searching for your services."
+        },
+        {
+          "icon": "palette",
+          "text": "<strong><a class='underline font-bold' href='/website-design'>Professional Website Design</a></strong>. Custom websites that convert visitors into customers."
+        },
+        {
+          "icon": "megaphone",
+          "text": "<strong><a class='underline font-bold' href='/social-media-management'>Social Media Strategy</a></strong>. Build and engage your audience with strategic content."
+        },
+        {
+          "icon": "trending",
+          "text": "<strong><a class='underline font-bold' href='/ppc'>PPC Campaign Management</a></strong>. Strategic campaigns that maximize exposure and drive qualified leads."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Partner with {city}'s Local Advertising & Digital Marketing Pros",
+      "description": "Contact us today for a free consultation and let's discuss how we can grow your business.",
+      "buttonText": "Schedule Free Consultation",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "badge": "FAQs",
+      "title": "Frequently Asked Questions",
+      "description": "Everything you need to know about our services",
+      "faqs": [
+        {
+          "question": "What is Indoor Digital Signage Advertising?",
+          "answer": "It's the placement of your ads on TV screens located inside high-traffic venues. Learn more about our <a class='underline font-bold' href='/screen-advertising'>indoor billboard advertising</a> and how it works."
+        },
+        {
+          "question": "Do you offer packages that include screens and online ads?",
+          "answer": "Yes! We offer bundled packages that combine <a class='underline font-bold' href='/screen-advertising'>indoor billboards</a> with digital marketing services like <a class='underline font-bold' href='/social-media-advertising'>social media ads</a>, <a class='underline font-bold' href='/ppc'>PPC</a>, and <a class='underline font-bold' href='/connected-tv'>Connected TV</a>."
+        },
+        {
+          "question": "Can you help my business rank on Google?",
+          "answer": "Absolutely. We provide SEO services, <a class='underline font-bold' href='/google-business'>Google Business Profile setup</a>, and local search strategies to help you get found online."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "We Put Local Brands on the Map",
+      "description": "Our billboard network spans across {city}'s most popular neighborhoods",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

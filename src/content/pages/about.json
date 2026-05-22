@@ -1,0 +1,130 @@
+{
+  "title": "About Us - Denver Digital Marketing Agenciess",
+  "description": "Learn about Acme Inc., Denver's trusted digital marketing agency with 20+ years of experience. We help local businesses grow through billboard advertising, web design, PPC & social media.",
+  "keywords": "about Acme Inc, Denver marketing agency, local advertising company, digital marketing team Denver, marketing experts Colorado",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Our Stories",
+      "title": "About Us",
+      "description": "Unleash the Power of Digital Marketing!",
+      "buttonText": "Get in Touch",
+      "buttonHref": "/contact",
+      "image": "/images/about-us-partner.avif",
+      "imageAlt": "Denver digital marketing agency team"
+    },
+    {
+      "type": "content",
+      "badge": "Who We Are",
+      "variant": "card",
+      "title": "Empowering {city} Businesses",
+      "description": "With 20 years of corporate experience working with industry leaders like Fortune 500 companies, we've brought our expertise directly to {city}'s local business community. We're passionate about helping local businesses thrive through innovative <a class='underline font-bold' href='/screen-advertising'>digital billboard advertising</a>, professional <a class='underline font-bold' href='/website-design'>website design</a>, and comprehensive multichannel campaigns.",
+      "image": "/images/about-us-team.avif",
+      "imageAlt": "Marketing team working on client campaigns",
+      "imagePosition": "right",
+      "features": []
+    },
+    {
+      "type": "valueCards",
+      "badge": "Why Choose Us",
+      "title": "What Sets Us Apart",
+      "variant": "overlay",
+      "cards": [
+        {
+          "icon": "pin",
+          "title": "Experts in Local Marketing",
+          "description": "Our marketing strategies are finely tuned to reach your specific community.",
+          "image": "/images/local-marketing-experts.avif"
+        },
+        {
+          "icon": "people",
+          "title": "Community-Based Advertising",
+          "description": "We tailor our campaigns to resonate with local values and interests.",
+          "image": "/images/community-advertising.avif"
+        },
+        {
+          "icon": "dollar",
+          "title": "Affordability",
+          "description": "Cost-effective marketing solutions tailored to your budget.",
+          "image": "/images/affordability.avif"
+        },
+        {
+          "icon": "sparkle",
+          "title": "Amazing Creative",
+          "description": "Dynamic, engaging content that stands out and captures attention.",
+          "image": "/images/amazing-creative.avif"
+        },
+        {
+          "icon": "award",
+          "title": "A Proven Track Record",
+          "description": "Successful campaigns that drive brand awareness and customer engagement.",
+          "image": "/images/track-record.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Grow Your Business?",
+      "description": "Let's create a marketing strategy that delivers results. Contact us today for a free consultation.",
+      "buttonText": "Get Started Today",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "description": "We're proud to serve businesses throughout the Denver metro area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "badge": "FAQs",
+      "title": "Frequently Asked Questions",
+      "faqs": [
+        {
+          "question": "How long have you been in business?",
+          "answer": "We have over 20 years of corporate marketing experience working with Fortune 500 companies, now dedicated to helping local businesses succeed."
+        },
+        {
+          "question": "What industries do you work with?",
+          "answer": "We work with businesses of all sizes and industries - from local shops and restaurants to professional services and e-commerce stores. Explore our full range of <a class='underline font-bold' href='/solutions'>marketing solutions</a> to see how we can help."
+        },
+        {
+          "question": "Do you offer free consultations?",
+          "answer": "Yes! We offer free consultations to discuss your business goals and how we can help you achieve them. <a class='underline font-bold' href='/contact'>Reach out today</a> to get started."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

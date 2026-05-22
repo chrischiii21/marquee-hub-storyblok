@@ -1,0 +1,72 @@
+---
+// Floating Free Scan button that triggers the popup modal
+// Only visible on desktop (md and up)
+---
+
+<button
+  id="free-scan-trigger"
+  class="free-scan pill-btn"
+  aria-label="Ask for a Free Scan"
+>
+  <svg
+    class="free-scan__icon"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.75"
+      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+    ></path>
+  </svg>
+  <span class="free-scan__label">Ask for a Free Scan</span>
+  <span class="pill-arrow">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H9M17 7V15" />
+    </svg>
+  </span>
+</button>
+
+<style is:global>
+  #free-scan-trigger.free-scan {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 40;
+    display: none;
+    animation: free-scan-pulse 2.4s ease-in-out infinite;
+  }
+  @media (min-width: 768px) {
+    #free-scan-trigger.free-scan { display: inline-flex; }
+  }
+  #free-scan-trigger.free-scan:hover { animation: none; }
+
+  #free-scan-trigger .free-scan__icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #fff;
+    transition: transform 0.3s ease;
+  }
+  #free-scan-trigger.free-scan:hover .free-scan__icon { transform: rotate(-5deg) scale(1.05); }
+  #free-scan-trigger .free-scan__label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+
+  @keyframes free-scan-pulse {
+    0%, 100% {
+      box-shadow: 0 12px 30px -10px rgba(26, 26, 26, 0.35), 0 0 0 0 rgba(232, 80, 10, 0.45);
+    }
+    50% {
+      box-shadow: 0 12px 30px -10px rgba(26, 26, 26, 0.35), 0 0 0 14px rgba(232, 80, 10, 0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #free-scan-trigger.free-scan { animation: none; }
+  }
+</style>

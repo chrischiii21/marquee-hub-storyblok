@@ -1,0 +1,22 @@
+{
+  "title": "Contact Us",
+  "description": "Get in touch with us to learn more about our services and how we can help your business grow.",
+  "keywords": "contact Denver marketing agency, marketing agency Denver contact, free marketing consultation Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Let's Work Togethers",
+      "title": "Get Started Today",
+      "description": "Contact Us to Get Started!",
+      "image": "/images/contact-us-hero.jpg",
+      "imageAlt": "Customer support contact center representative"
+    },
+    {
+      "type": "contact",
+      "variant": "split",
+      "title": "Contact Us",
+      "description": "Ready to take your marketing to the next level? We'd love to hear from you. Fill out the form and we'll get back to you within 24 hours.",
+      "submitText": "SUBMIT FORM"
+    }
+  ]
+}

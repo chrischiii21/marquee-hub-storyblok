@@ -1,0 +1,311 @@
+---
+import { getLocationText, siteConfig } from "@/config/site"
+import AnimateOnScroll from "@/components/AnimateOnScroll.astro"
+import { ArrowUpRight, Phone, Mail } from "lucide-react"
+
+interface Props {
+  badge?: string
+  title: string
+  description: string
+  buttonText?: string
+  buttonHref?: string
+  secondaryButtonText?: string
+  secondaryButtonHref?: string
+  variant?: "bold" | "split" | "card" | "banner"
+}
+
+const {
+  badge,
+  title,
+  description,
+  buttonText = "Get Started",
+  buttonHref = "/contact",
+  secondaryButtonText,
+  secondaryButtonHref,
+  variant = "bold",
+} = Astro.props
+
+const processedTitle = getLocationText(title)
+const processedDescription = getLocationText(description)
+const processedBadge = badge ? getLocationText(badge) : undefined
+---
+
+<section class={`cta-sec cta-sec--${variant}`}>
+  <div class="container mx-auto px-4 md:px-8">
+    {variant === "bold" && (
+      <AnimateOnScroll animation="fade-up">
+        <div class="dark-card cta-bold">
+          <div class="cta-bold__inner">
+            {processedBadge && <span class="chip-label chip-label--light mb-6">{processedBadge}</span>}
+            <h2 class="cta-title">{processedTitle}</h2>
+            <p class="cta-desc">{processedDescription}</p>
+            <div class="cta-actions">
+              <a href={buttonHref} class="pill-btn pill-btn--terracotta">
+                {buttonText}
+                <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+              </a>
+              {secondaryButtonText && secondaryButtonHref && (
+                <a href={secondaryButtonHref} class="cta-text-link">{secondaryButtonText} →</a>
+              )}
+            </div>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    )}
+
+    {variant === "split" && (
+      <div class="cta-split">
+        <div class="dark-card cta-split__main">
+          {processedBadge && <span class="chip-label chip-label--light mb-5">{processedBadge}</span>}
+          <h2 class="cta-title cta-title--split">{processedTitle}</h2>
+          <p class="cta-desc cta-desc--light">{processedDescription}</p>
+          <div class="cta-actions mt-6">
+            <a href={buttonHref} class="pill-btn pill-btn--terracotta">
+              {buttonText}
+              <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+            </a>
+            {secondaryButtonText && secondaryButtonHref && (
+              <a href={secondaryButtonHref} class="cta-text-link cta-text-link--light">{secondaryButtonText} →</a>
+            )}
+          </div>
+        </div>
+
+        <div class="cta-split__aside">
+          <p class="aside-kicker">Contact Us Directly</p>
+          <a href={`tel:${siteConfig.contact.phone}`} class="aside-contact">
+            <span class="aside-contact__icon"><Phone className="w-5 h-5" /></span>
+            <span>
+              <span class="aside-contact__label">Call Us</span>
+              <span class="aside-contact__value">{siteConfig.contact.phoneFormatted}</span>
+            </span>
+          </a>
+          <a href={`mailto:${siteConfig.contact.email}`} class="aside-contact">
+            <span class="aside-contact__icon"><Mail className="w-5 h-5" /></span>
+            <span>
+              <span class="aside-contact__label">Email Us</span>
+              <span class="aside-contact__value">{siteConfig.contact.email}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    )}
+
+    {variant === "card" && (
+      <AnimateOnScroll animation="fade-up">
+        <div class="cta-card">
+          {processedBadge && <span class="chip-label mb-5 mx-auto">{processedBadge}</span>}
+          <h2 class="cta-title cta-title--dark">{processedTitle}</h2>
+          <p class="cta-desc cta-desc--muted" set:html={processedDescription} />
+          <div class="cta-actions justify-center">
+            <a href={buttonHref} class="pill-btn">
+              {buttonText}
+              <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+            </a>
+            {secondaryButtonText && secondaryButtonHref && (
+              <a href={secondaryButtonHref} class="cta-text-link cta-text-link--dark">{secondaryButtonText} →</a>
+            )}
+          </div>
+        </div>
+      </AnimateOnScroll>
+    )}
+
+    {variant === "banner" && (
+      <div class="dark-card cta-banner">
+        <div class="cta-banner__content">
+          <h2 class="cta-title cta-title--banner">{processedTitle}</h2>
+          <p class="cta-desc" set:html={processedDescription} />
+        </div>
+        <div class="cta-actions shrink-0">
+          <a href={buttonHref} class="pill-btn pill-btn--terracotta">
+            {buttonText}
+            <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+          </a>
+          {secondaryButtonText && secondaryButtonHref && (
+            <a href={secondaryButtonHref} class="cta-text-link cta-text-link--light">{secondaryButtonText} →</a>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .cta-sec {
+    padding: 1.25rem 0 2rem;
+    background: var(--bg-cream);
+  }
+  @media (min-width: 768px) { .cta-sec { padding: 1.75rem 0 2.75rem; } }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4.2vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff !important;
+    margin: 0 0 1rem;
+  }
+  .cta-title--dark { color: var(--ink) !important; }
+  .cta-title--split {
+    font-size: clamp(1.7rem, 3.5vw, 2.25rem);
+  }
+  .cta-title--banner {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .cta-desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.72);
+    margin: 0 0 1.75rem;
+  }
+  .cta-desc--light { color: rgba(255,255,255,0.72); }
+  .cta-desc--muted { color: var(--muted); }
+
+  /* Bold variant */
+  .cta-bold {
+    padding: 3.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  @media (min-width: 768px) { .cta-bold { padding: 6rem 3rem; } }
+  .cta-bold::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 85% 20%, rgba(232,80,10,0.22), transparent 45%), radial-gradient(circle at 15% 80%, rgba(232,80,10,0.12), transparent 45%);
+    pointer-events: none;
+  }
+  .cta-bold__inner {
+    position: relative;
+    max-width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+  .cta-actions.justify-center { justify-content: center; }
+
+  .cta-text-link {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+  .cta-text-link:hover { color: var(--terracotta); }
+  .cta-text-link--light { color: rgba(255,255,255,0.85); }
+  .cta-text-link--light:hover { color: var(--terracotta); }
+  .cta-text-link--dark { color: var(--ink); }
+
+  /* Split variant */
+  .cta-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  @media (min-width: 900px) {
+    .cta-split { grid-template-columns: 1.6fr 1fr; gap: 0; }
+  }
+  .cta-split__main {
+    padding: 2.5rem 2rem;
+  }
+  @media (min-width: 768px) { .cta-split__main { padding: 4rem 3rem; } }
+  .cta-split__aside {
+    background: #2a2622;
+    color: #fff;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 16px;
+  }
+  @media (min-width: 768px) { .cta-split__aside { padding: 3rem 2.5rem; } }
+  @media (min-width: 900px) {
+    .cta-split__main { border-radius: 16px 0 0 16px; }
+    .cta-split__aside { border-radius: 0 16px 16px 0; }
+  }
+  .aside-kicker {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin: 0 0 0.5rem;
+  }
+  .aside-contact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+  .aside-contact:hover { background: rgba(232,80,10,0.2); }
+  .aside-contact__icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .aside-contact__label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+  }
+  .aside-contact__value {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  /* Card variant */
+  .cta-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    max-width: 52rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 768px) { .cta-card { padding: 4.5rem 3rem; } }
+
+  /* Banner variant */
+  .cta-banner {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  @media (min-width: 900px) {
+    .cta-banner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 3rem;
+    }
+  }
+  .cta-banner__content { flex: 1; }
+  .cta-banner .cta-desc { margin-bottom: 0; }
+</style>

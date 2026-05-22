@@ -1,0 +1,150 @@
+{
+  "title": "Pay Per Click",
+  "description": "Professional pay-per-click advertising services to drive targeted traffic and conversions.",
+  "keywords": "pay per click Denver, PPC advertising Denver, Google Ads Denver, PPC management Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Lead Generation",
+      "title": "Pay-Per-Click (PPC)",
+      "description": "Driving Targeted Traffic to Your Website",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/ppc.avif",
+      "imageAlt": "Pay-per-click advertising campaign dashboard"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Pay-Per-Click (PPC)",
+      "description": "Google Pay-Per-Click (PPC) Advertising is key to remaining top-of-mind and at the top of search channels. With PPC, you're strategically targeting individuals who are actively seeking products or services like yours. Combine PPC with <a class='underline font-bold' href='/geofencing'>geofencing display ads</a> to capture customers both through search and location-based targeting.",
+      "image": "/images/ppc-content.avif",
+      "imageAlt": "Google Ads PPC campaign management",
+      "imagePosition": "right"
+    },
+    {
+      "type": "features",
+      "title": "Generate Leads With Pay-Per-Click Advertising",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "target",
+          "title": "Search Optimization",
+          "description": "From optimizing your ad copy to managing your budget to maximize conversions."
+        },
+        {
+          "icon": "globe",
+          "title": "Superior Targeting",
+          "description": "Thorough research on your competitors, keywords, and geographical data."
+        },
+        {
+          "icon": "monitor",
+          "title": "Reporting",
+          "description": "Detailed reports showcasing your campaign's performance."
+        },
+        {
+          "icon": "dollar",
+          "title": "Cost Effective",
+          "description": "You only pay when your ad generates clicks or other desired actions."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Steps on PPC",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "message",
+          "title": "Step 1: On-Boarding Meeting",
+          "description": "We'll discuss your goals, target audience, and brand.",
+          "image": "/images/on-boarding.avif"
+        },
+        {
+          "icon": "target",
+          "title": "Step 2: Keyword Research",
+          "description": "Thorough keyword and audience research to ensure success.",
+          "image": "/images/keyword.avif"
+        },
+        {
+          "icon": "rocket",
+          "title": "Step 3: Implementation",
+          "description": "Careful implementation of keywords and audience targeting.",
+          "image": "/images/implementation.avif"
+        },
+        {
+          "icon": "wrench",
+          "title": "Step 4: Reporting",
+          "description": "Transparent insights for your campaign performance.",
+          "image": "/images/reporting.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Drive More Leads with PPC?",
+      "description": "Get targeted traffic and maximize your exposure with our expert PPC management services.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "PPC Common Questions",
+      "faqs": [
+        {
+          "question": "How much should I spend on PPC?",
+          "answer": "The cost varies according to your needs, goals, and scope. Contact us to find out more."
+        },
+        {
+          "question": "What factors influence PPC prices?",
+          "answer": "Quality score, seasonality, competitiveness, click-through-rate, and ad rank/position."
+        },
+        {
+          "question": "What happens after someone clicks my ad?",
+          "answer": "They land on your website�that's why having a well-designed <a class='underline font-bold' href='/website-design'>custom website</a> is essential for converting PPC traffic. We also recommend optimizing your <a class='underline font-bold' href='/google-business'>Google Business Profile</a> to build trust with local searchers."
+        },
+        {
+          "question": "Can PPC work with other marketing channels?",
+          "answer": "Absolutely! PPC pairs well with <a class='underline font-bold' href='/social-media-advertising'>social media advertising</a> for a full lead generation strategy."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

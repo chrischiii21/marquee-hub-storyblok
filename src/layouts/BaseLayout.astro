@@ -1,0 +1,224 @@
+---
+import { ClientRouter } from "astro:transitions"
+import "../styles/global.css"
+import Navbar from "@/components/Navbar.astro"
+import Footer from "@/components/Footer.astro"
+import ThemeProvider from "@/components/ThemeProvider.astro"
+import PopupModal from "@/components/PopupModal.astro"
+import FreeScanButton from "@/components/FreeScanButton.astro"
+import { siteConfig } from "@/config/site"
+
+interface Props {
+  title: string
+  description?: string
+  keywords?: string
+  ogImage?: string
+  ogType?: "website" | "article"
+  noindex?: boolean
+  canonicalUrl?: string
+  preloadImage?: string
+}
+
+const { 
+  title, 
+  description = siteConfig.seo.defaultDescription,
+  keywords = siteConfig.seo.keywords,
+  ogImage = siteConfig.seo.ogImage,
+  ogType = "website",
+  noindex = false,
+  canonicalUrl,
+  preloadImage
+} = Astro.props
+
+const fullTitle = title.includes(siteConfig.seo.siteName) ? title : `${title} | ${siteConfig.seo.siteName}`
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteConfig.seo.siteUrl).href
+
+// JSON-LD Structured Data
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": siteConfig.business.name,
+  "description": siteConfig.business.description,
+  "url": siteConfig.seo.siteUrl,
+  "logo": siteConfig.logo.src,
+  "image": ogImage,
+  "telephone": siteConfig.contact.phone,
+  "email": siteConfig.contact.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": siteConfig.location.address,
+    "addressLocality": siteConfig.location.city,
+    "addressRegion": siteConfig.location.state,
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "39.7392",
+    "longitude": "-104.9903"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": siteConfig.location.city
+  },
+  "priceRange": "$$",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "sameAs": Object.values(siteConfig.social).filter(Boolean)
+}
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": siteConfig.seo.siteName,
+  "url": siteConfig.seo.siteUrl,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${siteConfig.seo.siteUrl}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={siteConfig.business.name} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Robots -->
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={siteConfig.seo.siteName} />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:site" content={siteConfig.seo.twitterHandle} />
+    
+    <!-- Geo Tags for Local SEO -->
+    <meta name="geo.region" content={`US-${siteConfig.location.state.substring(0, 2).toUpperCase()}`} />
+    <meta name="geo.placename" content={siteConfig.location.city} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content={siteConfig.colors.primary} />
+    
+    <!-- Preload critical font -->
+    <link rel="preload" href="/fonts/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Preconnect for Performance (only used origins) -->
+    <link rel="preconnect" href="https://ucarecdn.com" crossorigin />
+    <link rel="dns-prefetch" href="https://ucarecdn.com" />
+    
+    <!-- Preload LCP image ASAP (desktop only) -->
+    {preloadImage && (
+      <link 
+        rel="preload" 
+        href={preloadImage} 
+        as="image" 
+        type="image/avif"
+        fetchpriority="high"
+        media="(min-width: 768px)"
+      />
+    )}
+    
+    
+    <!-- Removed prefetch links - let Astro's viewport prefetch handle it -->
+    
+    <!-- Google Analytics -->
+    {siteConfig.analytics?.googleAnalyticsId && (
+      <>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.googleAnalyticsId}`}
+        ></script>
+        <script is:inline define:vars={{ gaId: siteConfig.analytics.googleAnalyticsId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', gaId);
+          // Re-send pageview on Astro client-side navigations (View Transitions)
+          document.addEventListener('astro:page-load', function() {
+            gtag('event', 'page_view', {
+              page_location: window.location.href,
+              page_title: document.title,
+            });
+          });
+        </script>
+      </>
+    )}
+    
+    <!-- Inline critical CSS for faster initial render -->
+    <style is:inline>
+      html{font-family:system-ui,-apple-system,sans-serif}body{margin:0;min-height:100vh}*{box-sizing:border-box}
+    </style>
+    
+    <!-- JSON-LD Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    
+    <!-- Service Worker Registration (Progressive Web App) -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(
+            function(registration) {
+              console.log('ServiceWorker registration successful');
+            },
+            function(err) {
+              console.log('ServiceWorker registration failed: ', err);
+            }
+          );
+        });
+      }
+    </script>
+    
+    <ClientRouter />
+    <ThemeProvider />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Navbar />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer variant="classic" />
+    <FreeScanButton />
+    <PopupModal triggerId="free-scan-trigger" />
+  </body>
+</html>

@@ -1,0 +1,151 @@
+{
+  "title": "Marketing Agency Centennial CO | Digital Marketing",
+  "city": "Centennial",
+  "description": "Professional marketing agency in Centennial, CO. Digital marketing, social media, website design, SEO, and PPC services for Centennial businesses.",
+  "keywords": "marketing agency Centennial CO, digital marketing Centennial, Centennial marketing services",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Premium Marketing Solutions",
+      "title": "Local Advertising and Digital Marketing Pros in Centennial, CO",
+      "subtitle": "Helping Centennial Businesses Get Noticed - On Screens and Online",
+      "buttonText": "Contact our advertising experts",
+      "buttonHref": "/contact",
+      "image": "https://ucarecdn.com/155fbe6b-18a4-4917-8ceb-27eda59b6d04/-/preview/1000x667/",
+      "imageAlt": "Centennial Colorado cityscape and local businesses"
+    },
+    {
+      "type": "content",
+      "title": "Your Local Marketing Partner in Centennial",
+      "description": "We're a full-service digital marketing agency dedicated to helping Centennial businesses succeed online. Whether you need a <a class='underline font-bold' href='/website-design'>new website</a>, <a class='underline font-bold' href='/social-media-management'>social media management</a>, or <a class='underline font-bold' href='/screen-advertising'>advertising campaigns</a>, we provide personalized strategies that deliver real results.",
+      "image": "https://ucarecdn.com/155fbe6b-18a4-4917-8ceb-27eda59b6d04/-/preview/1000x667/",
+      "imageAlt": "Centennial business district and marketing opportunities",
+      "imagePosition": "right",
+      "buttonText": "Get Started",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "features",
+      "badge": "Why Choose Us",
+      "title": "Digital Marketing Experts Serving Centennial",
+      "columns": 4,
+      "features": [
+        {
+          "icon": "target",
+          "title": "Increased Foot Traffic",
+          "description": "Drive more visitors to your storefronts through <a class='underline font-bold' href='/screen-advertising'>indoor digital signage</a>."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Higher Brand Visibility",
+          "description": "Get seen in high-traffic venues and across <a class='underline font-bold' href='/social-media-advertising'>digital platforms</a>."
+        },
+        {
+          "icon": "share",
+          "title": "Improved Online Presence",
+          "description": "Strengthen your digital footprint with professionally <a class='underline font-bold' href='/social-media-management'>managed social media</a>."
+        },
+        {
+          "icon": "dollar",
+          "title": "More Qualified Leads",
+          "description": "Attract high-intent customers with <a class='underline font-bold' href='/ppc'>targeted PPC campaigns</a>."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "badge": "Our Process",
+      "title": "How We Work With Centennial Businesses",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "message",
+          "title": "Step 1: Discovery Call",
+          "description": "We start with a free consultation to understand your business.",
+          "image": "https://ucarecdn.com/6716188c-356d-42a9-a4bf-0d9d831d09ca/-/preview/700x400/"
+        },
+        {
+          "icon": "palette",
+          "title": "Step 2: Custom Strategy",
+          "description": "We create a tailored marketing plan for your business.",
+          "image": "https://ucarecdn.com/1cbab3fe-ca2c-4380-99ea-ef6fce04946b/-/preview/1000x660/"
+        },
+        {
+          "icon": "rocket",
+          "title": "Step 3: Execution & Launch",
+          "description": "Our team handles all the work - from design to launch.",
+          "image": "https://3l4xnbxrrw.ucarecd.net/93a21408-952f-4c5f-a73b-e3815a7b7d71/-/preview/1000x668/"
+        },
+        {
+          "icon": "trending",
+          "title": "Step 4: Ongoing Optimization",
+          "description": "We monitor performance and continuously improve results.",
+          "image": "https://3l4xnbxrrw.ucarecd.net/293a9ee0-c57b-4de6-8c24-547059f5a63d/-/preview/666x1000/"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Grow Your Centennial Business?",
+      "description": "Whether you're a startup or an established business, we have the <a class='underline font-bold' href='/solutions'>marketing solutions</a> to help you reach more customers.",
+      "buttonText": "Schedule a Free Consultation",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "badge": "FAQs",
+      "title": "Common Questions About Our Services",
+      "faqs": [
+        {
+          "question": "Do you only work with businesses in Centennial?",
+          "answer": "While we specialize in serving Centennial businesses, we work with clients throughout the Denver metro area. See all our <a class='underline font-bold' href='/locations'>service areas</a>."
+        },
+        {
+          "question": "What types of businesses do you work with?",
+          "answer": "We work with businesses of all sizes and industries - from local shops to professional services. Explore our <a class='underline font-bold' href='/solutions'>marketing solutions</a> to find the right fit."
+        },
+        {
+          "question": "How much do your services cost?",
+          "answer": "Every business has different needs. <a class='underline font-bold' href='/contact'>Contact us</a> for a free consultation and personalized quote."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving Centennial and Surrounding Areas",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Denver",
+          "href": "/",
+          "description": "Downtown Denver"
+        },
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to reach Centennial customers?",
+      "description": "Contact us today for a free consultation about Centennial advertising opportunities.",
+      "buttonText": "Get Free Quote",
+      "buttonHref": "/contact"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "title": "Social Media Management",
+  "description": "Build and engage your audience across all major social platforms.",
+  "keywords": "social media management Denver, SMM services Denver, social media marketing Denver",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Foundational",
+      "title": "Social Media Management",
+      "description": "Improve the performance, engagement, and audience reach of your social media profiles.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/digital-marketing.avif",
+      "imageAlt": "Social media management dashboard and analytics"
+    },
+    {
+      "type": "content",
+      "variant": "dark",
+      "title": "Social Media Management",
+      "description": "Connect with your target audience on social media to boost engagement and social credibility. We'll help amplify your brand story with engaging graphics and on-trend content. Need to accelerate results? Pair organic management with <a class='underline font-bold' href='/social-media-advertising'>paid social media advertising</a> for maximum impact.",
+      "image": "/images/reach-more-people.avif",
+      "imageAlt": "Engaging social media content and posts",
+      "imagePosition": "right"
+    },
+    {
+      "type": "features",
+      "title": "What's Included in Social Media Management?",
+      "columns": 2,
+      "features": [
+        {
+          "icon": "palette",
+          "title": "Strategic Content Creation",
+          "description": "Each creative asset resonates with your target audiences. Our <a class='underline font-bold' href='/design-services'>design services</a> team crafts scroll-stopping visuals."
+        },
+        {
+          "icon": "monitor",
+          "title": "Monthly Content Calendar",
+          "description": "Consistent, frequent social media activity is key to remaining relevant."
+        },
+        {
+          "icon": "target",
+          "title": "Dedicated Strategist",
+          "description": "We specialize in managing your online presence across various platforms."
+        },
+        {
+          "icon": "share",
+          "title": "Performance Reporting",
+          "description": "Analyzing performance metrics and monitoring market trends."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "Steps on Social Media Management",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "message",
+          "title": "Step 1: On-Boarding",
+          "description": "We'll gather essential information about your brand, goals, and audience.",
+          "image": "/images/on-boarding-media.avif"
+        },
+        {
+          "icon": "target",
+          "title": "Step 2: Research + Strategy",
+          "description": "We'll dive into research about your audience and competitors.",
+          "image": "/images/brand-image.avif"
+        },
+        {
+          "icon": "palette",
+          "title": "Step 3: Content Development",
+          "description": "We'll develop creative content for the upcoming month.",
+          "image": "/images/content-development.avif"
+        },
+        {
+          "icon": "wrench",
+          "title": "Step 4: Report and Optimization",
+          "description": "Regular performance reports detailing key metrics.",
+          "image": "/images/report-optimization.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Grow Your Social Media Presence?",
+      "description": "Let us handle your social media so you can focus on running your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Common Questions About Social Media Management",
+      "faqs": [
+        {
+          "question": "How much does Social Media Management cost?",
+          "answer": "The cost varies according to your needs, goals, and scope. Contact us to find out more."
+        },
+        {
+          "question": "Can I make my posts even if my profile is being managed?",
+          "answer": "Yes! Just let us know what you plan on posting to ensure consistent messaging."
+        },
+        {
+          "question": "Do I need to give you my password?",
+          "answer": "No, we'll help you set up agency access instead."
+        },
+        {
+          "question": "Why is Social Media Management important?",
+          "answer": "It's a foundational marketing tool that increases brand awareness and builds customer loyalty. Combined with a strong <a class='underline font-bold' href='/website-design'>website</a> and an optimized <a class='underline font-bold' href='/google-business'>Google Business Profile</a>, it creates a powerful online presence for your business."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Serving the Denver Metro Area",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}

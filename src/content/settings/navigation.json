@@ -1,0 +1,171 @@
+{
+  "header": {
+    "links": [
+      {
+        "text": "Home",
+        "href": "/"
+      },
+      {
+        "text": "About Us",
+        "href": "/about"
+      }
+    ],
+    "dropdowns": [
+      {
+        "title": "Indoor Billboards",
+        "items": [
+          {
+            "text": "Become a Venue Partner",
+            "href": "/venue-partner",
+            "description": "Join our network of premium venues"
+          },
+          {
+            "text": "Locations",
+            "href": "/locations",
+            "description": "Our network locations"
+          },
+          {
+            "text": "Screen Advertising",
+            "href": "/screen-advertising",
+            "description": "Advertise on screens"
+          }
+        ]
+      },
+      {
+        "title": "Solutions",
+        "href": "/solutions",
+        "sections": [
+          {
+            "label": "Foundational",
+            "items": [
+              {
+                "text": "Website Design",
+                "href": "/website-design",
+                "description": "Custom website design & development"
+              },
+              {
+                "text": "Google Business Profile",
+                "href": "/google-business",
+                "description": "Optimize your local presence"
+              },
+              {
+                "text": "Social Media Management",
+                "href": "/social-media-management",
+                "description": "Build and engage your audience"
+              },
+              {
+                "text": "Design Services",
+                "href": "/design-services",
+                "description": "Professional design services"
+              }
+            ]
+          },
+          {
+            "label": "Lead Gen",
+            "items": [
+              {
+                "text": "Social Media Advertising",
+                "href": "/social-media-advertising",
+                "description": "Drive targeted traffic"
+              },
+              {
+                "text": "Pay Per Click",
+                "href": "/ppc",
+                "description": "PPC advertising services"
+              }
+            ]
+          },
+          {
+            "label": "Branding & Awareness",
+            "items": [
+              {
+                "text": "Connected TV (OTT Ads)",
+                "href": "/connected-tv",
+                "description": "Reach streaming audiences"
+              },
+              {
+                "text": "Display (Geofencing)",
+                "href": "/geofencing",
+                "description": "Location-based advertising"
+              },
+              {
+                "text": "Streaming Audio",
+                "href": "/streaming-audio",
+                "description": "Audio ads on music platforms"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ctaButton": {
+      "text": "Contact Us",
+      "href": "/contact"
+    }
+  },
+  "footer": {
+    "columns": [
+      {
+        "title": "Solutions",
+        "links": [
+          {
+            "text": "Website Design",
+            "href": "/website-design"
+          },
+          {
+            "text": "Google Business",
+            "href": "/google-business"
+          },
+          {
+            "text": "Social Media",
+            "href": "/social-media-management"
+          },
+          {
+            "text": "PPC Advertising",
+            "href": "/ppc"
+          }
+        ]
+      },
+      {
+        "title": "Indoor Billboards",
+        "links": [
+          {
+            "text": "Become a Venue Partner",
+            "href": "/venue-partner"
+          },
+          {
+            "text": "Locations",
+            "href": "/locations"
+          },
+          {
+            "text": "Screen Advertising",
+            "href": "/screen-advertising"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "text": "About Us",
+            "href": "/about"
+          },
+          {
+            "text": "Contact",
+            "href": "/contact"
+          },
+          {
+            "text": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "text": "Terms of Service",
+            "href": "/terms"
+          }
+        ]
+      }
+    ],
+    "copyright": "© 2025 Acme Inc. All rights reserved.",
+    "madeBy": "Made by <a href='https://ntv360.com' target='_blank' rel='noopener'>NTV360</a>"
+  }
+}

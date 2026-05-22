@@ -1,0 +1,150 @@
+{
+  "navItems": [
+    {
+      "type": "link",
+      "title": "Home",
+      "href": "/"
+    },
+    {
+      "type": "link",
+      "title": "About Us",
+      "href": "/about"
+    },
+    {
+      "type": "dropdown",
+      "title": "Indoor Billboards",
+      "items": [
+        {
+          "title": "Become a Venue Partner",
+          "description": "Join our network of premium venues to reach engaged audiences.",
+          "href": "/venue-partner",
+          "icon": "handshake"
+        },
+        {
+          "title": "Locations",
+          "description": "Our network of indoor digital billboards is located within retail spaces.",
+          "href": "/locations",
+          "icon": "mappin"
+        },
+        {
+          "title": "Screen Advertising",
+          "description": "Advertise on screens in your local community to reach your audience.",
+          "href": "/screen-advertising",
+          "icon": "monitor"
+        }
+      ]
+    },
+    {
+      "type": "megamenu",
+      "title": "Solutions",
+      "href": "/solutions",
+      "sections": [
+        {
+          "label": "Foundational",
+          "items": [
+            {
+              "title": "Website Design",
+              "description": "Custom website design & development to achieve your unique goals.",
+              "href": "/website-design",
+              "icon": "globe"
+            },
+            {
+              "title": "Google Business Profile",
+              "description": "Optimize your local presence and get found by customers.",
+              "href": "/google-business",
+              "icon": "circledot"
+            },
+            {
+              "title": "Social Media Management",
+              "description": "Build and engage your audience across all major social platforms.",
+              "href": "/social-media-management",
+              "icon": "share2"
+            },
+            {
+              "title": "Design Services",
+              "description": "Professional design services to elevate your brand identity.",
+              "href": "/design-services",
+              "icon": "palette"
+            }
+          ]
+        },
+        {
+          "label": "Lead Gen",
+          "items": [
+            {
+              "title": "Social Media Advertising",
+              "description": "Professional social media advertising to drive targeted traffic.",
+              "href": "/social-media-advertising",
+              "icon": "megaphone"
+            },
+            {
+              "title": "Pay Per Click",
+              "description": "Professional PPC advertising to drive targeted traffic and conversions.",
+              "href": "/ppc",
+              "icon": "dollarsign"
+            }
+          ]
+        },
+        {
+          "label": "Branding & Awareness",
+          "items": [
+            {
+              "title": "Connected TV (OTT Ads)",
+              "description": "Reach audiences on streaming platforms with targeted TV advertising.",
+              "href": "/connected-tv",
+              "icon": "tv"
+            },
+            {
+              "title": "Display (Geofencing)",
+              "description": "Location-based display advertising that targets customers where they are.",
+              "href": "/geofencing",
+              "icon": "target"
+            },
+            {
+              "title": "Streaming Audio Advertising",
+              "description": "Reach engaged listeners with targeted streaming audio ads.",
+              "href": "/streaming-audio",
+              "icon": "music"
+            }
+          ]
+        }
+      ],
+      "featured": [
+        {
+          "title": "Connected TV (OTT Ads)",
+          "description": "Reach audiences on streaming platforms with targeted TV advertising.",
+          "href": "/connected-tv",
+          "image": "/images/connected-tv.avif"
+        },
+        {
+          "title": "Social Media Advertising",
+          "description": "Professional social media advertising to drive targeted traffic.",
+          "href": "/social-media-advertising",
+          "image": "/images/advertising-content.avif"
+        },
+        {
+          "title": "Website Design",
+          "description": "Custom website design & development to achieve your unique goals.",
+          "href": "/website-design",
+          "image": "/images/website-design.avif"
+        },
+        {
+          "title": "Geofencing",
+          "description": "Location-based display advertising that targets customers where they are.",
+          "href": "/geofencing",
+          "image": "/images/geofencing.avif"
+        },
+        {
+          "title": "Streaming Audio Advertising",
+          "description": "Reach engaged listeners with targeted streaming audio ads on popular music platforms.",
+          "href": "/streaming-audio",
+          "image": "/images/streaming-audio.avif"
+        }
+      ]
+    }
+  ],
+  "ctaButton": {
+    "text": "Contact Us",
+    "href": "/contact"
+  }
+}

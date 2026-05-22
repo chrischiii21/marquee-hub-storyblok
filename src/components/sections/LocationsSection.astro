@@ -1,0 +1,318 @@
+---
+import { getLocationText } from "@/config/site"
+import { MapPin, ArrowUpRight } from "lucide-react"
+import AnimateOnScroll from "@/components/AnimateOnScroll.astro"
+
+interface Location {
+  name: string
+  href: string
+  description?: string
+}
+
+interface Props {
+  badge?: string
+  title: string
+  description?: string
+  locations?: Location[]
+  mapCenter?: { lat: number; lng: number }
+  mapUrl?: string
+  variant?: "overlay" | "split" | "cards" | "full" | "half"
+}
+
+const {
+  badge,
+  title,
+  description,
+  locations = [],
+  mapCenter = { lat: 39.7392, lng: -104.9903 },
+  mapUrl: customMapUrl,
+  variant = "overlay",
+} = Astro.props
+
+const processedTitle = getLocationText(title)
+const processedDescription = description ? getLocationText(description) : undefined
+const processedBadge = badge ? getLocationText(badge) : undefined
+
+const mapUrl = customMapUrl || `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d196281.12937236!2d${mapCenter.lng}!3d${mapCenter.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1704067200000!5m2!1sen!2sus`
+---
+
+<section class="loc-sec">
+  <div class="container mx-auto px-4 md:px-8">
+    {variant === "full" && (
+      <>
+        <AnimateOnScroll animation="fade-up">
+          <div class="loc-head">
+            {processedBadge && <span class="chip-label mb-5">{processedBadge}</span>}
+            <h2 class="loc-title">{processedTitle}</h2>
+            {processedDescription && <p class="loc-desc" set:html={processedDescription} />}
+          </div>
+        </AnimateOnScroll>
+        <AnimateOnScroll animation="fade-up" delay={120}>
+          <div class="loc-map-card">
+            <iframe src={mapUrl} class="w-full h-full" style="border: 0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Location Map" />
+          </div>
+        </AnimateOnScroll>
+      </>
+    )}
+
+    {(variant === "half" || variant === "split") && (
+      <div class="loc-split">
+        <AnimateOnScroll animation="fade-right">
+          <div class="dark-card loc-split__panel">
+            {processedBadge && variant === "split" && (
+              <span class="chip-label chip-label--light mb-5">{processedBadge}</span>
+            )}
+            <h2 class="loc-title loc-title--light">{processedTitle}</h2>
+            {processedDescription && (
+              <p class="loc-desc loc-desc--light" set:html={processedDescription} />
+            )}
+            {locations.length > 0 && (
+              <div class="loc-grid mt-auto">
+                {locations.map((location) => (
+                  <a href={location.href} class="loc-chip group">
+                    <span class="loc-chip__pin"><MapPin className="w-4 h-4" /></span>
+                    <span>
+                      <span class="loc-chip__name">{location.name}</span>
+                      <span class="loc-chip__sub">
+                        View location
+                        <ArrowUpRight className="w-3 h-3" />
+                      </span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </AnimateOnScroll>
+        <AnimateOnScroll animation="fade-left" delay={120}>
+          <div class="loc-map-card loc-map-card--tall">
+            <iframe src={mapUrl} class="w-full h-full" style="border: 0; min-height: 100%" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Location Map" />
+          </div>
+        </AnimateOnScroll>
+      </div>
+    )}
+
+    {variant === "overlay" && (
+      <AnimateOnScroll animation="fade-up">
+        <div class="loc-overlay hidden md:block">
+          <div class="loc-overlay__map">
+            <iframe src={mapUrl} class="w-full h-full" style="border: 0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Service Area Map" />
+          </div>
+          <div class="loc-overlay__card-wrap">
+            <div class="dark-card loc-overlay__card">
+              {processedBadge && <span class="chip-label chip-label--light mb-5">{processedBadge}</span>}
+              <h2 class="loc-title loc-title--light">{processedTitle}</h2>
+              {processedDescription && (
+                <p class="loc-desc loc-desc--light" set:html={processedDescription} />
+              )}
+              <p class="loc-kicker">Featured Locations</p>
+              <div class="loc-overlay-list">
+                {locations.map((location) => (
+                  <a href={location.href} class="loc-overlay-item group">
+                    <span class="loc-overlay-item__icon"><MapPin className="w-4 h-4" /></span>
+                    <span class="loc-overlay-item__meta">
+                      <span class="loc-overlay-item__name">{location.name}</span>
+                      {location.description && (
+                        <span class="loc-overlay-item__desc">{location.description}</span>
+                      )}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 loc-overlay-item__arrow" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:hidden loc-mobile">
+          <div class="dark-card loc-split__panel">
+            {processedBadge && <span class="chip-label chip-label--light mb-5">{processedBadge}</span>}
+            <h2 class="loc-title loc-title--light">{processedTitle}</h2>
+            {processedDescription && <p class="loc-desc loc-desc--light" set:html={processedDescription} />}
+            {locations.length > 0 && (
+              <div class="loc-grid mt-6">
+                {locations.map((location) => (
+                  <a href={location.href} class="loc-chip">
+                    <span class="loc-chip__pin"><MapPin className="w-4 h-4" /></span>
+                    <span class="loc-chip__name">{location.name}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="loc-map-card loc-map-card--tall mt-4">
+            <iframe src={mapUrl} class="w-full h-full" style="border: 0; min-height: 100%" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Location Map" />
+          </div>
+        </div>
+      </AnimateOnScroll>
+    )}
+  </div>
+</section>
+
+<style>
+  .loc-sec {
+    padding: 2rem 0 2.5rem;
+    background: var(--bg-cream);
+  }
+  @media (min-width: 768px) { .loc-sec { padding: 2.75rem 0 3.25rem; } }
+
+  .loc-head { text-align: center; max-width: 42rem; margin: 0 auto 3rem; }
+  .loc-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .loc-title--light { color: #fff !important; }
+  .loc-desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+  .loc-desc--light { color: rgba(255,255,255,0.72); }
+
+  .loc-map-card {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 480px;
+    border: 1px solid var(--hairline);
+    background: #fff;
+  }
+  .loc-map-card--tall {
+    min-height: 400px;
+    height: 100%;
+  }
+
+  .loc-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  @media (min-width: 900px) { .loc-split { grid-template-columns: 1fr 1fr; } }
+  .loc-split__panel {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  @media (min-width: 768px) { .loc-split__panel { padding: 3rem 2.5rem; } }
+
+  .loc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .loc-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+  .loc-chip:hover { background: rgba(232,80,10,0.22); }
+  .loc-chip__pin {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .loc-chip__name {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  .loc-chip__sub {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 0.15rem;
+  }
+
+  /* Overlay */
+  .loc-overlay {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 620px;
+  }
+  .loc-overlay__map {
+    position: absolute; inset: 0;
+  }
+  .loc-overlay__card-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 2.5rem;
+    max-width: 460px;
+  }
+  .loc-overlay__card {
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+    background: rgba(26,26,26,0.88);
+  }
+  .loc-kicker {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin: 1.5rem 0 0.75rem;
+  }
+  .loc-overlay-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .loc-overlay-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+  .loc-overlay-item:hover { background: rgba(232,80,10,0.2); }
+  .loc-overlay-item__icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--terracotta);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .loc-overlay-item__meta { flex: 1; }
+  .loc-overlay-item__name {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  .loc-overlay-item__desc {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.1rem;
+  }
+  .loc-overlay-item__arrow {
+    color: rgba(255,255,255,0.5);
+    transition: all 0.2s ease;
+  }
+  .loc-overlay-item:hover .loc-overlay-item__arrow {
+    color: #fff;
+    transform: translate(2px, -2px);
+  }
+
+  .loc-mobile { display: grid; gap: 1rem; }
+  @media (min-width: 768px) { .loc-mobile { display: none; } }
+</style>

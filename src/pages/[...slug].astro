@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import HeroHomeStatic from "@/components/sections/HeroHomeStatic.astro"
+import HeroPage from "@/components/sections/HeroPage.astro"
+import FeaturesSection from "@/components/sections/FeaturesSection.astro"
+import ContentSection from "@/components/sections/ContentSection.astro"
+import CTASection from "@/components/sections/CTASection.astro"
+import FAQSection from "@/components/sections/FAQSection.astro"
+import LocationsSection from "@/components/sections/LocationsSection.astro"
+import ValueCardsSection from "@/components/sections/ValueCardsSection.astro"
+import ContactSection from "@/components/sections/ContactSection.astro"
+
+export const prerender = true
+
+export async function getStaticPaths() {
+  const pageModules = import.meta.glob('/src/content/pages/**/*.json', { eager: true })
+  const paths: { params: { slug: string | undefined }, props: { pageData: any } }[] = []
+  
+  for (const [filePath, module] of Object.entries(pageModules)) {
+    const pageData = module as any
+    const slug = filePath
+      .replace('/src/content/pages/', '')
+      .replace('.json', '')
+    
+    if (slug === 'index') {
+      paths.push({ params: { slug: undefined }, props: { pageData } })
+    } else {
+      paths.push({ params: { slug }, props: { pageData } })
+    }
+  }
+  
+  return paths
+}
+
+const { pageData } = Astro.props
+const sections = pageData.sections || []
+
+const pageTitle = pageData.title || pageData.name
+const isHomepage = Astro.url.pathname === '/'
+
+// Get hero image for preloading (LCP optimization)
+const heroSection = sections.find((s: any) => s.type === 'hero')
+const heroImage = heroSection?.image
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={pageData.description}
+  keywords={pageData.keywords}
+  preloadImage={heroImage}
+>
+  {sections.map((section: any) => {
+    const { type, ...props } = section
+    
+    if (type === 'hero') {
+      return isHomepage 
+        ? <HeroHomeStatic {...props} />
+        : <HeroPage {...props} />
+    }
+    
+    if (type === 'features') return <FeaturesSection {...props} />
+    if (type === 'content') return <ContentSection {...props} />
+    if (type === 'cta') return <CTASection {...props} />
+    if (type === 'faq') return <FAQSection {...props} />
+    if (type === 'valueCards') return <ValueCardsSection {...props} />
+    if (type === 'locations') return <LocationsSection {...props} />
+    if (type === 'contact') return <ContactSection {...props} />
+    
+    return null
+  })}
+  
+  {/* Legal pages with legalSections */}
+  {pageData.legalSections && (
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+        {pageData.legalSections.map((section: any) => (
+          <div class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900">{section.title}</h2>
+            {section.content && <p class="text-gray-600 mb-4" set:html={section.content} />}
+            {section.items && (
+              <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
+                {section.items.map((item: string) => <li set:html={item} />)}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

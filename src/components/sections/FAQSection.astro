@@ -1,0 +1,345 @@
+---
+import { getLocationText } from "@/config/site"
+import AnimateOnScroll from "@/components/AnimateOnScroll.astro"
+import { Plus, Minus, ArrowUpRight } from "lucide-react"
+
+interface FAQ { question: string; answer: string }
+
+interface Props {
+  badge?: string
+  title?: string
+  description?: string
+  faqs: FAQ[]
+  variant?: "accordion" | "cards" | "minimal"
+}
+
+const {
+  badge,
+  title = "Frequently Asked Questions",
+  description,
+  faqs,
+  variant = "accordion",
+} = Astro.props
+
+const processedTitle = getLocationText(title)
+const processedDescription = description ? getLocationText(description) : undefined
+const processedBadge = badge ? getLocationText(badge) : undefined
+---
+
+<section class="faq-sec">
+  <div class="container mx-auto px-4 md:px-8">
+    {variant === "accordion" && (
+      <div class="max-w-3xl mx-auto">
+        <AnimateOnScroll animation="fade-up">
+          <div class="text-center mb-12">
+            {processedBadge && <span class="chip-label mb-5">{processedBadge}</span>}
+            <h2 class="faq-title">{processedTitle}</h2>
+            {processedDescription && <p class="faq-desc">{processedDescription}</p>}
+          </div>
+        </AnimateOnScroll>
+
+        <div class="space-y-3" x-data="{ openIndex: 0 }">
+          {faqs.map((faq, index) => (
+            <AnimateOnScroll animation="fade-up" delay={index * 80}>
+              <div
+                :class={`openIndex === ${index} ? 'faq-item faq-item--open' : 'faq-item'`}
+                class="faq-item"
+              >
+                <button
+                  @click={`openIndex = openIndex === ${index} ? null : ${index}`}
+                  :aria-expanded={`openIndex === ${index}`}
+                  class="faq-toggle"
+                >
+                  <span class="faq-q">{getLocationText(faq.question)}</span>
+                  <span
+                    :class={`openIndex === ${index} ? 'faq-icon faq-icon--open' : 'faq-icon'`}
+                    class="faq-icon"
+                  >
+                    <template x-if={`openIndex === ${index}`}>
+                      <Minus className="w-4 h-4" />
+                    </template>
+                    <template x-if={`openIndex !== ${index}`}>
+                      <Plus className="w-4 h-4" />
+                    </template>
+                  </span>
+                </button>
+                <div
+                  x-show={`openIndex === ${index}`}
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="opacity-0 max-h-0"
+                  x-transition:enter-end="opacity-100 max-h-96"
+                  x-transition:leave="transition ease-in duration-200"
+                  x-transition:leave-start="opacity-100 max-h-96"
+                  x-transition:leave-end="opacity-0 max-h-0"
+                  class="overflow-hidden"
+                >
+                  <p class="faq-a" set:html={getLocationText(faq.answer)} />
+                </div>
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {variant === "cards" && (
+      <>
+        <AnimateOnScroll animation="fade-up">
+          <div class="text-center mb-12 max-w-2xl mx-auto">
+            {processedBadge && <span class="chip-label mb-5">{processedBadge}</span>}
+            <h2 class="faq-title">{processedTitle}</h2>
+            {processedDescription && <p class="faq-desc">{processedDescription}</p>}
+          </div>
+        </AnimateOnScroll>
+
+        <div class="faq-cards-grid" x-data="{ openIndex: null }">
+          {faqs.map((faq, index) => (
+            <AnimateOnScroll animation="fade-up" delay={index * 80}>
+              <div
+                @click={`openIndex = openIndex === ${index} ? null : ${index}`}
+                :class={`openIndex === ${index} ? 'faq-card faq-card--open' : 'faq-card'`}
+                class="faq-card"
+              >
+                <div class="flex items-start justify-between gap-4 mb-3">
+                  <h3 class="faq-card-q">{getLocationText(faq.question)}</h3>
+                  <span
+                    :class={`openIndex === ${index} ? 'faq-icon faq-icon--open' : 'faq-icon'`}
+                    class="faq-icon shrink-0"
+                  >
+                    <template x-if={`openIndex === ${index}`}>
+                      <Minus className="w-4 h-4" />
+                    </template>
+                    <template x-if={`openIndex !== ${index}`}>
+                      <Plus className="w-4 h-4" />
+                    </template>
+                  </span>
+                </div>
+                <p x-show={`openIndex === ${index}`} x-transition class="faq-a faq-a--card" set:html={getLocationText(faq.answer)} />
+                <p x-show={`openIndex !== ${index}`} class="faq-a faq-a--card faq-a--clamp" set:html={getLocationText(faq.answer)} />
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </>
+    )}
+
+    {variant === "minimal" && (
+      <div class="faq-minimal-grid">
+        <AnimateOnScroll animation="fade-right" class="faq-minimal-aside">
+          {processedBadge && <span class="chip-label mb-5">{processedBadge}</span>}
+          <h2 class="faq-title faq-title--left">{processedTitle}</h2>
+          {processedDescription && <p class="faq-desc">{processedDescription}</p>}
+          <div class="faq-aside-footer">
+            <p class="faq-aside-kicker">Still have questions?</p>
+            <a href="/contact" class="pill-btn mt-3">
+              Contact our team
+              <span class="pill-arrow"><ArrowUpRight className="w-4 h-4" /></span>
+            </a>
+          </div>
+        </AnimateOnScroll>
+
+        <div class="faq-minimal-list" x-data="{ openIndex: 0 }">
+          {faqs.map((faq, index) => (
+            <AnimateOnScroll animation="fade-left" delay={index * 80}>
+              <div class="faq-min-row">
+                <button
+                  @click={`openIndex = openIndex === ${index} ? null : ${index}`}
+                  :aria-expanded={`openIndex === ${index}`}
+                  class="faq-toggle faq-toggle--min group"
+                >
+                  <span
+                    :class={`openIndex === ${index} ? 'faq-q faq-q--active' : 'faq-q'`}
+                    class="faq-q"
+                  >
+                    {getLocationText(faq.question)}
+                  </span>
+                  <span
+                    :class={`openIndex === ${index} ? 'faq-dot faq-dot--active' : 'faq-dot'`}
+                    class="faq-dot"
+                  >
+                    <template x-if={`openIndex === ${index}`}>
+                      <Minus className="w-3 h-3" />
+                    </template>
+                    <template x-if={`openIndex !== ${index}`}>
+                      <Plus className="w-3 h-3" />
+                    </template>
+                  </span>
+                </button>
+                <div x-show={`openIndex === ${index}`} x-transition class="overflow-hidden">
+                  <p class="faq-a faq-a--min" set:html={getLocationText(faq.answer)} />
+                </div>
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .faq-sec {
+    padding: 2rem 0 2.5rem;
+    background: var(--bg-cream);
+  }
+  @media (min-width: 768px) { .faq-sec { padding: 2.75rem 0 3.25rem; } }
+
+  .faq-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 1rem 0 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .faq-title--left { text-align: left; }
+  .faq-desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Accordion */
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    transition: all 0.25s ease;
+  }
+  .faq-item--open {
+    border-color: var(--terracotta);
+    background: #fff;
+    box-shadow: 0 16px 40px -20px rgba(232,80,10,0.25);
+  }
+  .faq-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+  .faq-q {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--ink);
+    flex: 1;
+    letter-spacing: -0.005em;
+  }
+  .faq-q--active { color: var(--terracotta); }
+  .faq-icon {
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    background: var(--bg-cream);
+    color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+  }
+  .faq-icon--open { background: var(--terracotta); color: #fff; }
+  .faq-a {
+    padding: 0 1.5rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Cards */
+  .faq-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 768px) { .faq-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .faq-cards-grid { grid-template-columns: repeat(3, 1fr); } }
+  .faq-card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    height: 100%;
+  }
+  .faq-card:hover { border-color: var(--ink); }
+  .faq-card--open {
+    background: var(--ink);
+    border-color: var(--ink);
+    box-shadow: 0 16px 40px -16px rgba(0,0,0,0.3);
+  }
+  .faq-card-q {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+    margin: 0;
+  }
+  .faq-card--open .faq-card-q { color: #fff; }
+  .faq-card--open .faq-icon { background: rgba(255,255,255,0.15); color: #fff; }
+  .faq-a--card { padding: 0; font-size: 0.9rem; line-height: 1.6; }
+  .faq-card--open .faq-a--card { color: rgba(255,255,255,0.72); }
+  .faq-a--clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Minimal */
+  .faq-minimal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 900px) {
+    .faq-minimal-grid { grid-template-columns: 2fr 3fr; gap: 4rem; }
+  }
+  .faq-minimal-aside { position: relative; }
+  @media (min-width: 900px) { .faq-minimal-aside { position: sticky; top: 6rem; align-self: flex-start; } }
+  .faq-aside-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .faq-aside-kicker {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .faq-minimal-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .faq-min-row {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .faq-min-row:last-child { border-bottom: none; }
+  .faq-toggle--min { padding: 0.25rem 0; }
+  .faq-dot {
+    width: 28px; height: 28px;
+    border-radius: 999px;
+    border: 1.5px solid var(--hairline);
+    background: transparent;
+    color: var(--muted);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .faq-dot--active { background: var(--terracotta); color: #fff; border-color: var(--terracotta); }
+  .faq-a--min { padding: 0.75rem 0 0; padding-right: 2.5rem; }
+</style>

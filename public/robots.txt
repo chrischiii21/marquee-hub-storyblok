@@ -1,0 +1,15 @@
+# Robots.txt for NTV360
+# https://www.ntv360.space
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.ntv360.space/sitemap-index.xml
+
+# Disallow admin/private areas
+Disallow: /api/
+Disallow: /_astro/
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

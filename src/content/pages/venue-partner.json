@@ -1,0 +1,152 @@
+{
+  "title": "Become a Venue Partner",
+  "description": "Join our network of premium venues to reach engaged audiences in high-traffic locations across Denver.",
+  "keywords": "become venue partner Denver, indoor billboard venue partner, digital signage venue partner",
+  "sections": [
+    {
+      "type": "hero",
+      "badge": "Indoor Billboard Network",
+      "title": "Become a Venue Partner",
+      "description": "We all share the same customers, so why not work together?",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact",
+      "image": "/images/venue-partner-hero.avif",
+      "imageAlt": "Venue partnership opportunities for indoor billboards"
+    },
+    {
+      "type": "content",
+      "variant": "card",
+      "title": "Become A Venue Partner",
+      "description": "Our network of indoor digital billboards is located within retail and restaurant venues across your local community. Venue partners enjoy the benefits of discounted <a class='underline font-bold' href='/screen-advertising'>screen advertising</a>, cross-network promoting and much more! <a class='underline font-bold' href='/about'>Learn more about our agency</a> and how we support local businesses.",
+      "image": "/images/venue-partner-content.avif",
+      "imageAlt": "Venue partner network locations and benefits",
+      "imagePosition": "left"
+    },
+    {
+      "type": "features",
+      "title": "Why Do Venues Want to Join Our Network",
+      "columns": 3,
+      "features": [
+        {
+          "icon": "share",
+          "title": "Network Advertising",
+          "description": "Your venue's motion ads will be showcased in nearby non-competitive locations."
+        },
+        {
+          "icon": "tv",
+          "title": "Internal Advertising",
+          "description": "Engage with your customers while they are inside your establishment."
+        },
+        {
+          "icon": "palette",
+          "title": "Content Creation",
+          "description": "We handle all graphic content creation for our Venue Network Partners."
+        },
+        {
+          "icon": "target",
+          "title": "Access to Marketing Services",
+          "description": "Access to a variety of different <a class='underline font-bold' href='/solutions'>marketing services</a> and our talented marketing staff."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Local Support",
+          "description": "We are here to meet with you and service your needs."
+        },
+        {
+          "icon": "monitor",
+          "title": "More Than Ads",
+          "description": "We also provide engaging content like weather updates, trivia, and fun facts."
+        }
+      ]
+    },
+    {
+      "type": "valueCards",
+      "title": "How do I Become a Venue Partner?",
+      "description": "Hosting an indoor digital billboard is easy! We'll take care of everything.",
+      "variant": "cards",
+      "cards": [
+        {
+          "icon": "target",
+          "title": "Step 1: Contact Us",
+          "description": "Reach out to express your interest in becoming a venue partner.",
+          "image": "/images/contact-us-man.avif"
+        },
+        {
+          "icon": "users",
+          "title": "Step 2: Setup a Free Consultation",
+          "description": "Schedule a complimentary consultation where we'll visit your venue.",
+          "image": "/images/free-consultation.avif"
+        },
+        {
+          "icon": "clock",
+          "title": "Step 3: Approve Your Ad and Installation Date",
+          "description": "Review and approve your custom venue ad design.",
+          "image": "/images/installation-date.avif"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "bold",
+      "title": "Ready to Become a Venue Partner?",
+      "description": "Join our premium indoor billboard network in Denver.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    },
+    {
+      "type": "faq",
+      "title": "Venue Partner FAQs",
+      "faqs": [
+        {
+          "question": "Is there a cost to become a venue partner?",
+          "answer": "No! We provide the screen and installation at no cost to qualifying venues."
+        },
+        {
+          "question": "What kind of venues qualify?",
+          "answer": "High-traffic venues like restaurants, gyms, salons, medical offices, and retail stores."
+        },
+        {
+          "question": "How much screen time do I get for my own ads?",
+          "answer": "Venue partners receive dedicated screen time for their own promotions as part of the partnership. You'll also get access to our full suite of <a class='underline font-bold' href='/solutions'>marketing solutions</a> at discounted rates."
+        }
+      ]
+    },
+    {
+      "type": "locations",
+      "badge": "Service Areas",
+      "title": "Our Network Locations",
+      "description": "See where our screens are located across Denver",
+      "variant": "overlay",
+      "locations": [
+        {
+          "name": "Aurora",
+          "href": "/locations/aurora",
+          "description": "East Denver Metro"
+        },
+        {
+          "name": "Lakewood",
+          "href": "/locations/lakewood",
+          "description": "West Denver Metro"
+        },
+        {
+          "name": "Arvada",
+          "href": "/locations/arvada",
+          "description": "Northwest Denver"
+        },
+        {
+          "name": "Centennial",
+          "href": "/locations/centennial",
+          "description": "South Denver Metro"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "variant": "banner",
+      "title": "Ready to get started?",
+      "description": "Contact us today to learn how we can help grow your business.",
+      "buttonText": "Get In Touch",
+      "buttonHref": "/contact"
+    }
+  ]
+}
