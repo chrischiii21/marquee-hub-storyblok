@@ -17,17 +17,19 @@ interface Props {
   noindex?: boolean
   canonicalUrl?: string
   preloadImage?: string
+  pageSchemas?: Record<string, any>[]
 }
 
-const { 
-  title, 
+const {
+  title,
   description = siteConfig.seo.defaultDescription,
   keywords = siteConfig.seo.keywords,
   ogImage = siteConfig.seo.ogImage,
   ogType = "website",
   noindex = false,
   canonicalUrl,
-  preloadImage
+  preloadImage,
+  pageSchemas = []
 } = Astro.props
 
 const fullTitle = title.includes(siteConfig.seo.siteName) ? title : `${title} | ${siteConfig.seo.siteName}`
@@ -192,6 +194,9 @@ const websiteSchema = {
     <!-- JSON-LD Structured Data -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {pageSchemas.map((schema) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
     
     <!-- Service Worker Registration (Progressive Web App) -->
     <script is:inline>

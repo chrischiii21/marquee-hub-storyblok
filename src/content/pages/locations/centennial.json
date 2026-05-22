@@ -20,7 +20,7 @@
       "description": "We're a full-service digital marketing agency dedicated to helping Centennial businesses succeed online. Whether you need a <a class='underline font-bold' href='/website-design'>new website</a>, <a class='underline font-bold' href='/social-media-management'>social media management</a>, or <a class='underline font-bold' href='/screen-advertising'>advertising campaigns</a>, we provide personalized strategies that deliver real results.",
       "image": "https://ucarecdn.com/155fbe6b-18a4-4917-8ceb-27eda59b6d04/-/preview/1000x667/",
       "imageAlt": "Centennial business district and marketing opportunities",
-      "imagePosition": "right",
+      "imagePosition": "left",
       "buttonText": "Get Started",
       "buttonHref": "/contact"
     },

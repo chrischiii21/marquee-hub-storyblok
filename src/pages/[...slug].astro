@@ -9,8 +9,181 @@ import FAQSection from "@/components/sections/FAQSection.astro"
 import LocationsSection from "@/components/sections/LocationsSection.astro"
 import ValueCardsSection from "@/components/sections/ValueCardsSection.astro"
 import ContactSection from "@/components/sections/ContactSection.astro"
+import { siteConfig, getLocationText } from "@/config/site"
 
 export const prerender = true
+
+function stripHtml(input: string = ""): string {
+  return input.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim()
+}
+
+function buildPageSchemas(pageData: any, slug: string | undefined, pathname: string) {
+  const sections: any[] = pageData.sections || []
+  const url = new URL(pathname, siteConfig.seo.siteUrl).href
+  const isHomepage = !slug
+  const isLocationPage = slug?.startsWith("locations/")
+  const isContactPage = slug === "contact"
+  const isAboutPage = slug === "about"
+  const pageTitle = getLocationText(pageData.title || "")
+  const pageDescription = getLocationText(pageData.description || siteConfig.seo.defaultDescription)
+
+  const schemas: Record<string, any>[] = []
+
+  // 1. WebPage (or specialized variant) for every page
+  let webPageType: string = "WebPage"
+  if (isContactPage) webPageType = "ContactPage"
+  else if (isAboutPage) webPageType = "AboutPage"
+  else if (pageData.legalSections) webPageType = "WebPage"
+
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": webPageType,
+    name: pageTitle,
+    description: pageDescription,
+    url,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.seo.siteName,
+      url: siteConfig.seo.siteUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.business.name,
+      logo: {
+        "@type": "ImageObject",
+        url: new URL(siteConfig.logo.src, siteConfig.seo.siteUrl).href,
+      },
+    },
+  })
+
+  // 2. BreadcrumbList for non-homepage pages
+  if (!isHomepage && slug) {
+    const parts = slug.split("/")
+    const items: any[] = [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.seo.siteUrl + "/",
+      },
+    ]
+    let cumulative = ""
+    parts.forEach((part, idx) => {
+      cumulative += "/" + part
+      const label = part
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase())
+      items.push({
+        "@type": "ListItem",
+        position: idx + 2,
+        name: label,
+        item: new URL(cumulative, siteConfig.seo.siteUrl).href,
+      })
+    })
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: items,
+    })
+  }
+
+  // 3. FAQPage if any faq section has at least one Q&A
+  const faqSection = sections.find((s) => s.type === "faq")
+  if (faqSection && Array.isArray(faqSection.faqs) && faqSection.faqs.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqSection.faqs.map((f: any) => ({
+        "@type": "Question",
+        name: stripHtml(getLocationText(f.question || "")),
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: stripHtml(getLocationText(f.answer || "")),
+        },
+      })),
+    })
+  }
+
+  // 4. Service schema for service/solution pages (any page that isn't home/contact/about/legal/location/locations index)
+  const isServicePage =
+    !isHomepage &&
+    !isContactPage &&
+    !isAboutPage &&
+    !isLocationPage &&
+    slug !== "locations" &&
+    !pageData.legalSections
+  if (isServicePage) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: pageTitle,
+      description: pageDescription,
+      url,
+      provider: {
+        "@type": "LocalBusiness",
+        name: siteConfig.business.name,
+        telephone: siteConfig.contact.phone,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: siteConfig.location.address,
+          addressLocality: siteConfig.location.city,
+          addressRegion: siteConfig.location.state,
+          addressCountry: "US",
+        },
+      },
+      areaServed: {
+        "@type": "City",
+        name: siteConfig.location.city,
+      },
+    })
+  }
+
+  // 5. Location pages get a dedicated LocalBusiness with the served city
+  if (isLocationPage && pageData.city) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: `${siteConfig.business.name} — ${pageData.city}`,
+      description: pageDescription,
+      url,
+      telephone: siteConfig.contact.phone,
+      email: siteConfig.contact.email,
+      image: siteConfig.seo.ogImage,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: pageData.city,
+        addressRegion: siteConfig.location.state,
+        addressCountry: "US",
+      },
+      areaServed: {
+        "@type": "City",
+        name: pageData.city,
+      },
+      priceRange: "$$",
+    })
+  }
+
+  // 6. ContactPage gets a ContactPoint as well
+  if (isContactPage) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteConfig.business.name,
+      url: siteConfig.seo.siteUrl,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: siteConfig.contact.phone,
+        email: siteConfig.contact.email,
+        contactType: "customer service",
+        areaServed: "US",
+        availableLanguage: ["English"],
+      },
+    })
+  }
+
+  return schemas
+}
 
 export async function getStaticPaths() {
   const pageModules = import.meta.glob('/src/content/pages/**/*.json', { eager: true })
@@ -41,13 +214,17 @@ const isHomepage = Astro.url.pathname === '/'
 // Get hero image for preloading (LCP optimization)
 const heroSection = sections.find((s: any) => s.type === 'hero')
 const heroImage = heroSection?.image
+
+const slugParam = Astro.params.slug as string | undefined
+const pageSchemas = buildPageSchemas(pageData, slugParam, Astro.url.pathname)
 ---
 
-<BaseLayout 
-  title={pageTitle} 
+<BaseLayout
+  title={pageTitle}
   description={pageData.description}
   keywords={pageData.keywords}
   preloadImage={heroImage}
+  pageSchemas={pageSchemas}
 >
   {sections.map((section: any) => {
     const { type, ...props } = section

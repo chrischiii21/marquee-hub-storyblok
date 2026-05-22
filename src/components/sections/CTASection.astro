@@ -38,7 +38,7 @@ const processedBadge = badge ? getLocationText(badge) : undefined
           <div class="cta-bold__inner">
             {processedBadge && <span class="chip-label chip-label--light mb-6">{processedBadge}</span>}
             <h2 class="cta-title">{processedTitle}</h2>
-            <p class="cta-desc">{processedDescription}</p>
+            <p class="cta-desc" set:html={processedDescription} />
             <div class="cta-actions">
               <a href={buttonHref} class="pill-btn pill-btn--terracotta">
                 {buttonText}
@@ -58,7 +58,7 @@ const processedBadge = badge ? getLocationText(badge) : undefined
         <div class="dark-card cta-split__main">
           {processedBadge && <span class="chip-label chip-label--light mb-5">{processedBadge}</span>}
           <h2 class="cta-title cta-title--split">{processedTitle}</h2>
-          <p class="cta-desc cta-desc--light">{processedDescription}</p>
+          <p class="cta-desc cta-desc--light" set:html={processedDescription} />
           <div class="cta-actions mt-6">
             <a href={buttonHref} class="pill-btn pill-btn--terracotta">
               {buttonText}
