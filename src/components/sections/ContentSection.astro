@@ -52,12 +52,8 @@ const processedBadge = badge ? getLocationText(badge) : undefined
 
 const hasSlides = slides && slides.length > 0
 
-// Split title into words for inline-image editorial effect
 const titleWords = processedTitle.split(" ").filter(Boolean)
-const useInlineImage = variant === "simple" && titleWords.length >= 4
-const midIndex = Math.floor(titleWords.length / 2)
-const leftWords = titleWords.slice(0, midIndex)
-const rightWords = titleWords.slice(midIndex)
+const useCenteredHeadline = variant === "simple" && titleWords.length >= 4
 ---
 
 <section class={`content-sec content-sec--${variant}`}>
@@ -127,25 +123,12 @@ const rightWords = titleWords.slice(midIndex)
 
     {(variant === "simple" || variant === "gradient" || variant === "minimal") && (
       <div>
-        {/* Editorial split-headline with inline image pill */}
-        {!hasSlides && useInlineImage && (
+        {/* Centered editorial headline (no inline images) */}
+        {!hasSlides && useCenteredHeadline && (
           <AnimateOnScroll animation="fade-up">
             <div class="editorial-headline">
               {processedBadge && <span class="chip-label mb-5">{processedBadge}</span>}
-              <h2 class="editorial-title">
-                <span class="editorial-line">
-                  <span>{leftWords.join(" ")}</span>
-                  <span class="editorial-inline-img">
-                    <img src={image} alt="" loading="lazy" decoding="async" />
-                  </span>
-                </span>
-                <span class="editorial-line">
-                  <span class="editorial-inline-img editorial-inline-img--sm">
-                    <img src={image} alt="" loading="lazy" decoding="async" />
-                  </span>
-                  <span class="editorial-rest">{rightWords.join(" ")}</span>
-                </span>
-              </h2>
+              <h2 class="editorial-title">{processedTitle}</h2>
               {processedDescription && (
                 <p class="editorial-desc" set:html={processedDescription} />
               )}
@@ -159,7 +142,7 @@ const rightWords = titleWords.slice(midIndex)
           </AnimateOnScroll>
         )}
 
-        {(!useInlineImage || hasSlides) && (
+        {(!useCenteredHeadline || hasSlides) && (
           <div class={cn("content-split", imagePosition === "left" && "content-split--reverse")}>
             <AnimateOnScroll animation={imagePosition === "left" ? "fade-left" : "fade-right"}>
               <div x-data={hasSlides ? `{ currentSlide: 0, slideCount: ${slides?.length || 0} }` : "{}"}>

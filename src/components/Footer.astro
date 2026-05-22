@@ -31,10 +31,10 @@ const socialLinks = socialPlatforms.map((platform) => [platform, siteConfig.soci
         <div class="footer-brand-col">
           <a href="/" class="footer-logo" aria-label={siteConfig.business.name}>
             <img
-              src={siteConfig.logo.src}
+              src="/images/logo-dark.svg"
               alt={siteConfig.logo.alt}
-              width="64"
-              height="64"
+              width="200"
+              height="46"
               loading="lazy"
               decoding="async"
             />
@@ -160,7 +160,7 @@ const socialLinks = socialPlatforms.map((platform) => [platform, siteConfig.soci
     <div class="container mx-auto px-4 md:px-8">
       <div class="footer-centered__top">
         <a href="/" class="footer-logo">
-          <img src={siteConfig.logo.src} alt={siteConfig.logo.alt} width="56" height="56" loading="lazy" decoding="async" />
+          <img src="/images/logo-dark.svg" alt={siteConfig.logo.alt} width="200" height="46" loading="lazy" decoding="async" />
         </a>
         <p class="footer-tagline footer-tagline--center">
           {siteConfig.business.description} in {siteConfig.location.city}, {siteConfig.location.state}.
@@ -219,7 +219,7 @@ const socialLinks = socialPlatforms.map((platform) => [platform, siteConfig.soci
     <div class="container mx-auto px-4 md:px-8">
       <div class="footer-minimal__row">
         <a href="/" class="footer-logo">
-          <img src={siteConfig.logo.src} alt={siteConfig.logo.alt} width="40" height="40" loading="lazy" decoding="async" />
+          <img src="/images/logo-dark.svg" alt={siteConfig.logo.alt} width="160" height="37" loading="lazy" decoding="async" />
         </a>
         <nav class="footer-minimal__nav">
           <a href="/about" class="footer-col__link">About</a>
@@ -265,10 +265,9 @@ const socialLinks = socialPlatforms.map((platform) => [platform, siteConfig.soci
     line-height: 0;
   }
   .footer-logo img {
-    height: 56px;
+    height: 46px;
     width: auto;
     object-fit: contain;
-    filter: brightness(0) invert(1);
   }
   .footer-tagline {
     font-family: var(--font-body);

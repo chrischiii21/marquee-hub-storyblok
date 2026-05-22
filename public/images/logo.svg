@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" role="img" aria-label="marquee hub">
+  <!-- Squircle badge -->
+  <rect x="4" y="6" width="52" height="52" rx="14" ry="14" fill="#1A1A1A"/>
+
+  <!-- Glyph inside: stacked marquee bars -->
+  <g transform="translate(16 20)" stroke-linecap="round">
+    <rect x="0"  y="0"  width="24" height="4" rx="1.5" fill="#F5F0E8"/>
+    <rect x="4"  y="8"  width="20" height="4" rx="1.5" fill="#E8500A"/>
+    <rect x="0"  y="16" width="24" height="4" rx="1.5" fill="#F5F0E8"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="70" y="32"
+        font-family="'Bricolage Grotesque', 'Inter', system-ui, sans-serif"
+        font-size="22" font-weight="700"
+        letter-spacing="-0.4"
+        fill="#1A1A1A">marquee hub</text>
+
+  <!-- Tagline -->
+  <text x="70" y="50"
+        font-family="'Inter', system-ui, sans-serif"
+        font-size="9" font-weight="600"
+        letter-spacing="3"
+        fill="#E8500A">INDOOR  BILLBOARDS</text>
+</svg>
