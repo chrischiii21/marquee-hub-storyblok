@@ -1,7 +1,6 @@
 {
   "buildCommand": "bun run build",
   "framework": "astro",
-  "trailingSlash": true,
   "build": {
     "env": {
       "NODE_ENV": "production"
