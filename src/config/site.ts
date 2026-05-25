@@ -59,7 +59,7 @@ export const siteConfig = {
     defaultTitle: siteData.seo?.defaultTitle || "Acme Inc. | Digital Marketing in Denver",
     defaultDescription: siteData.seo?.defaultDescription || "Denver's trusted digital marketing agency. Indoor billboard ads, web design, PPC, social media & Connected TV. Free consultation!",
     keywords: siteData.seo?.keywords || "digital marketing Denver, local advertising Denver",
-    siteUrl: siteData.seo?.siteUrl || "https://www.ntv360.space",
+    siteUrl: siteData.seo?.siteUrl || "https://marquee-hub-template.vercel.app",
     ogImage: siteData.seo?.ogImage || "https://ntv-template-1.vercel.app/logo/dealer-logo.avif",
     twitterHandle: siteData.seo?.twitterHandle || "@acmeinc",
   },

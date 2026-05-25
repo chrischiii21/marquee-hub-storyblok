@@ -3,9 +3,9 @@
     "collect": {
       "numberOfRuns": 3,
       "url": [
-        "https://www.ntv360.space/",
-        "https://www.ntv360.space/about",
-        "https://www.ntv360.space/contact"
+        "https://marquee-hub-template.vercel.app/",
+        "https://marquee-hub-template.vercel.app/about",
+        "https://marquee-hub-template.vercel.app/contact"
       ]
     },
     "assert": {
