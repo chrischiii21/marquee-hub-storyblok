@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.ntv360.space',
+  site: 'https://marquee-hub-template.vercel.app',
   output: 'static',
   adapter: vercel(),
   
