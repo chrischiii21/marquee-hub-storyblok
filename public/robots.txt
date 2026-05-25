@@ -1,10 +1,11 @@
-# Robots.txt
+# Robots.txt for NTV360
+# https://www.ntv360.space
 
 User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://marquee-hub-template.vercel.app/sitemap-index.xml
+Sitemap: https://www.ntv360.space/sitemap-index.xml
 
 # Disallow admin/private areas
 Disallow: /api/
