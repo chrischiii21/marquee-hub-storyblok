@@ -10,6 +10,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://marquee-hub-template.vercel.app',
   output: 'static',
+  trailingSlash: 'always',
   adapter: vercel(),
   
   vite: {
