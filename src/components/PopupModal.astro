@@ -1,6 +1,7 @@
 ---
-import popupSettings from '../content/settings/popup.json';
-import siteSettings from '../content/settings/site.json';
+import { sanityClient } from 'sanity:client';
+import { urlFor } from '@/lib/sanityImage';
+import { siteConfig } from '@/config/site';
 
 interface Props {
   triggerId?: string; // ID of button that will trigger the popup
@@ -12,16 +13,18 @@ const {
   showOnce = true,
 } = Astro.props;
 
-// Read from CMS settings
+// Read from Sanity (popup document, editable via /admin)
+const popupSettings: any = (await sanityClient.fetch(`*[_type == "popup"][0]`)) ?? {};
+
 const isEnabled = popupSettings.enabled ?? false;
 const title = popupSettings.title || "Get Your Free Marketing Consultation";
 const description = popupSettings.description || "Let us help you grow your business.";
 const ctaText = popupSettings.buttonText || "Schedule Free Consultation";
 const ctaLink = popupSettings.buttonHref || "/contact";
-const popupImage = popupSettings.image || "https://ntv-template-1.vercel.app/images/home.avif";
+const popupImage = urlFor(popupSettings.image) || "https://ntv-template-1.vercel.app/images/home.avif";
 const delay = (popupSettings.delay || 3) * 1000; // Convert seconds to ms
-const logoSrc = siteSettings.logo?.src || "/images/logo.svg";
-const logoAlt = siteSettings.logo?.alt || "Logo";
+const logoSrc = siteConfig.logo.src;
+const logoAlt = siteConfig.logo.alt;
 ---
 
 {isEnabled && (

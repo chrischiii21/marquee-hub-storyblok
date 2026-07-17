@@ -10,6 +10,8 @@ import LocationsSection from "@/components/sections/LocationsSection.astro"
 import ValueCardsSection from "@/components/sections/ValueCardsSection.astro"
 import ContactSection from "@/components/sections/ContactSection.astro"
 import { siteConfig, getLocationText } from "@/config/site"
+import { sanityClient } from "sanity:client"
+import { urlFor } from "@/lib/sanityImage"
 
 export const prerender = true
 
@@ -185,23 +187,72 @@ function buildPageSchemas(pageData: any, slug: string | undefined, pathname: str
   return schemas
 }
 
+// NOTE: Astro extracts `getStaticPaths` into its own module context at build
+// time, so module-scope helpers declared in this frontmatter (other than
+// imports) are NOT reachable from inside it. Everything the function needs
+// is therefore defined inline, inside `getStaticPaths` itself.
 export async function getStaticPaths() {
-  const pageModules = import.meta.glob('/src/content/pages/**/*.json', { eager: true })
+  // Maps Sanity's section object `_type` back to the plain `type` string the
+  // section components below switch on.
+  const sectionTypeMap: Record<string, string> = {
+    heroSection: 'hero',
+    featuresSection: 'features',
+    contentSection: 'content',
+    ctaSection: 'cta',
+    faqSection: 'faq',
+    valueCardsSection: 'valueCards',
+    locationsSection: 'locations',
+    contactSection: 'contact',
+  }
+
+  // Resolves any Sanity image asset references within a section to plain CDN
+  // URL strings, so section components never need to know about Sanity.
+  function transformSection(section: any) {
+    const type = sectionTypeMap[section._type]
+    if (!type) return null
+    const { _type, _key, ...rest } = section
+    const out: any = { type, ...rest }
+
+    if (type === 'hero') {
+      out.image = urlFor(rest.image)
+      out.secondaryImage = urlFor(rest.secondaryImage)
+    }
+    if (type === 'content') {
+      out.image = urlFor(rest.image)
+    }
+    if (type === 'valueCards' && Array.isArray(rest.cards)) {
+      out.cards = rest.cards.map((c: any) => ({ ...c, image: urlFor(c.image) }))
+    }
+
+    return out
+  }
+
+  function transformPageData(doc: any) {
+    return {
+      title: doc.title,
+      name: doc.name,
+      city: doc.city,
+      description: doc.description,
+      keywords: doc.keywords,
+      sections: (doc.sections || []).map(transformSection).filter(Boolean),
+      legalSections: doc.legalSections,
+    }
+  }
+
+  const docs = await sanityClient.fetch(`*[_type == "page"]`)
   const paths: { params: { slug: string | undefined }, props: { pageData: any } }[] = []
-  
-  for (const [filePath, module] of Object.entries(pageModules)) {
-    const pageData = module as any
-    const slug = filePath
-      .replace('/src/content/pages/', '')
-      .replace('.json', '')
-    
+
+  for (const doc of docs) {
+    const slug = doc.slug?.current
+    const pageData = transformPageData(doc)
+
     if (slug === 'index') {
       paths.push({ params: { slug: undefined }, props: { pageData } })
     } else {
       paths.push({ params: { slug }, props: { pageData } })
     }
   }
-  
+
   return paths
 }
 

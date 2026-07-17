@@ -1,10 +1,12 @@
 // ===========================================
 // SITE CONFIGURATION
-// Reads from src/content/settings/site.json
-// Edit settings via Pages CMS
+// Sourced from the `siteSettings` document in Sanity. Edit via /admin.
 // ===========================================
 
-import siteData from '../content/settings/site.json';
+import { sanityClient } from 'sanity:client';
+import { urlFor } from '../lib/sanityImage';
+
+const siteData: any = (await sanityClient.fetch(`*[_type == "siteSettings"][0]`)) ?? {};
 
 export const siteConfig = {
   // Business Information
@@ -30,17 +32,18 @@ export const siteConfig = {
     phoneFormatted: siteData.contact?.phoneFormatted || "(303) 555-1234",
   },
 
-  // Brand Colors (used in CSS variables)
+  // Brand Colors (used in CSS variables). Stored in Sanity as @sanity/color-input
+  // objects ({hex, rgb, hsl, hsv}), resolved to plain hex strings here.
   colors: {
-    primary: siteData.colors?.primary || "#110133",
-    secondary: siteData.colors?.secondary || "#00918E",
-    tertiary: siteData.colors?.tertiary || "#4DD599",
-    quaternary: siteData.colors?.quaternary || "#FFDC34",
+    primary: siteData.colors?.primary?.hex || "#110133",
+    secondary: siteData.colors?.secondary?.hex || "#00918E",
+    tertiary: siteData.colors?.tertiary?.hex || "#4DD599",
+    quaternary: siteData.colors?.quaternary?.hex || "#FFDC34",
   },
 
   // Logo
   logo: {
-    src: siteData.logo?.src || "https://ntv-template-1.vercel.app/logo/dealer-logo.avif",
+    src: urlFor(siteData.logo?.image) || "https://ntv-template-1.vercel.app/logo/dealer-logo.avif",
     alt: siteData.logo?.alt || "Acme Inc. Logo",
   },
 
@@ -60,7 +63,7 @@ export const siteConfig = {
     defaultDescription: siteData.seo?.defaultDescription || "Denver's trusted digital marketing agency. Indoor billboard ads, web design, PPC, social media & Connected TV. Free consultation!",
     keywords: siteData.seo?.keywords || "digital marketing Denver, local advertising Denver",
     siteUrl: siteData.seo?.siteUrl || "https://marquee-hub-template.vercel.app",
-    ogImage: siteData.seo?.ogImage || "https://ntv-template-1.vercel.app/logo/dealer-logo.avif",
+    ogImage: urlFor(siteData.seo?.ogImage) || "https://ntv-template-1.vercel.app/logo/dealer-logo.avif",
     twitterHandle: siteData.seo?.twitterHandle || "@acmeinc",
   },
 

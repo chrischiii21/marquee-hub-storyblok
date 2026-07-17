@@ -14,8 +14,13 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-import navbarJson from '../content/settings/navbar.json';
-import footerJson from '../content/settings/footer.json';
+import { sanityClient } from 'sanity:client';
+import { urlFor } from '../lib/sanityImage';
+
+const [navbarJson, footerJson] = await Promise.all([
+  sanityClient.fetch(`*[_type == "navbar"][0]`).then((doc: any) => doc ?? {}),
+  sanityClient.fetch(`*[_type == "footer"][0]`).then((doc: any) => doc ?? {}),
+]);
 
 // Icon map for resolving icon names from JSON to Lucide components
 const navIconMap: Record<string, LucideIcon> = {
@@ -91,17 +96,17 @@ function resolveNavItems(items: { title: string; description?: string; href: str
 
 function parseNavItems(raw: any[]): DynamicNavItem[] {
   return raw.map(item => {
-    if (item.type === 'link') {
+    if (item._type === 'navLink') {
       return { type: 'link' as const, title: item.title, href: item.href }
     }
-    if (item.type === 'dropdown') {
+    if (item._type === 'navDropdown') {
       return {
         type: 'dropdown' as const,
         title: item.title,
         items: resolveNavItems(item.items || []),
       }
     }
-    if (item.type === 'megamenu') {
+    if (item._type === 'navMegaMenu') {
       return {
         type: 'megamenu' as const,
         title: item.title,
@@ -114,7 +119,7 @@ function parseNavItems(raw: any[]): DynamicNavItem[] {
           title: f.title,
           description: f.description ?? '',
           href: f.href,
-          image: f.image,
+          image: urlFor(f.image),
         })),
       }
     }
@@ -162,8 +167,30 @@ const defaultFooter = {
   ],
 }
 
+function parseFooterColumns(raw: any[]): FooterColumn[] {
+  return raw.map((col) => {
+    if (col._type === 'footerAccordionColumn') {
+      return {
+        type: 'accordion' as const,
+        title: col.title,
+        href: col.href,
+        sections: (col.sections || []).map((s: any) => ({
+          label: s.label,
+          items: s.items || [],
+        })),
+      }
+    }
+    // footerLinksColumn
+    return {
+      type: 'links' as const,
+      title: col.title,
+      links: col.links || [],
+    }
+  })
+}
+
 export const footerConfig = {
   description: footerJson.description ?? defaultFooter.description,
-  columns: (footerJson.columns ?? defaultFooter.columns) as FooterColumn[],
-  bottomLinks: footerJson.bottomLinks ?? defaultFooter.bottomLinks,
+  columns: footerJson.columns ? parseFooterColumns(footerJson.columns) : defaultFooter.columns,
+  bottomLinks: (footerJson.bottomLinks ?? defaultFooter.bottomLinks) as { label: string; href: string }[],
 }
